@@ -9,7 +9,7 @@ Este archivo registra qué debe demostrarse durante la implementación y la eval
 | 3 | Odoo Community y PostgreSQL en la nube | Completado |
 | 4 | Configuración de módulos, almacenes y datos base | Completado |
 | 5 | Compras, ventas, cotizaciones y facturación | Completado |
-| 6 | Sitio web, catálogo, carrito, impuestos y pago | Pendiente |
+| 6 | Sitio web, catálogo, carrito, impuestos y pago | Completado |
 | 7 | Google Analytics 4, segmentos, audiencias y exploraciones | Pendiente |
 | 8 | Flujo RPA en UiPath usando la interfaz de importación | Pendiente |
 | 9 | Consultas SQL para la evaluación | Pendiente |
@@ -75,3 +75,15 @@ La plantilla de trabajo se encuentra en el archivo generado dentro de `outputs/`
 - 50 facturas de venta exportadas físicamente a `outputs/facturas_pdf/`.
 - Los 50 PDF se validaron estructuralmente y una muestra se renderizó para comprobar que no tuviera cortes, superposiciones ni contenido ilegible.
 - Consultas preparadas en `consultas_sql/bloque5_verificacion.sql`.
+
+## Bloque 6 — Portal web y comercio electrónico
+
+- Portal público personalizado y disponible mediante HTTPS.
+- Logotipo, portada y seis imágenes de categorías creados específicamente para QuetzalMart.
+- 60 productos publicados con imagen, descripción, precio en GTQ e IVA del 12 %.
+- Seis categorías públicas y catálogo configurado para mostrar 24 productos por página.
+- Envío estándar publicado con tarifa de Q25 y gratuidad desde Q300 para Guatemala, México y El Salvador.
+- Proveedor Demo habilitado en modo de prueba y facturación automática activa.
+- Flujo integral validado desde Brave: catálogo, carrito, dirección, entrega, pago y confirmación.
+- Pedido web de control `S00171`, total Q38.56, confirmado y facturado mediante `INV/2026/00151` publicada.
+- Consultas preparadas en `consultas_sql/bloque6_verificacion.sql`.
