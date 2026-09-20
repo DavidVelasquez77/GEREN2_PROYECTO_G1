@@ -7,7 +7,7 @@ Este archivo registra qué debe demostrarse durante la implementación y la eval
 | 1 | Estructura del proyecto y plantillas de carga | Completado |
 | 2 | Proyecto GCP, VM y acceso remoto | Completado |
 | 3 | Odoo Community y PostgreSQL en la nube | Completado |
-| 4 | Configuración de módulos, almacenes y datos base | Pendiente |
+| 4 | Configuración de módulos, almacenes y datos base | Completado |
 | 5 | Compras, ventas, cotizaciones y facturación | Pendiente |
 | 6 | Sitio web, catálogo, carrito, impuestos y pago | Pendiente |
 | 7 | Google Analytics 4, segmentos, audiencias y exploraciones | Pendiente |
@@ -49,3 +49,18 @@ Este archivo registra qué debe demostrarse durante la implementación y la eval
 ## Entregable del bloque 1
 
 La plantilla de trabajo se encuentra en el archivo generado dentro de `outputs/`. Incluye hojas para inicio, clientes, productos, empleados, cargos y departamentos, ventas, compras y documentos.
+
+## Bloque 4 — Configuración funcional y datos base
+
+- 12 módulos validados: Ventas, Compras, Inventario, Facturación/Contabilidad, Empleados, Contratos, CRM, Comercio electrónico, Marketing por correo, localización de Guatemala, Documentos DMS y pago de demostración.
+- La gestión documental se implementó con el módulo Community de OCA DMS, compatible con Odoo 18.
+- Idioma `es_419` instalado; compañía ubicada en Guatemala y moneda principal GTQ.
+- Tres almacenes en una sola compañía: Guatemala (`GT`), México (`MX`) y El Salvador (`SV`).
+- Datos activos: 5 departamentos, 6 puestos, 35 empleados y 35 contratos.
+- Datos comerciales: 30 clientes, 25 proveedores y 60 productos con referencia `QM-001` a `QM-060`.
+- Existencias iniciales: 4,800 unidades en Guatemala, 3,300 en México y 2,700 en El Salvador.
+- Catálogo web publicado con 60 productos, seis categorías y precios en quetzales; la tienda presenta 20 productos por página.
+- Impuestos disponibles: IVA ventas 12 %, IVA compras 12 %, retención IVA -12 % y retención ISR -5 %.
+- Repositorio documental `Documentos QuetzalMart` con estructura inicial de directorios y categorías.
+- Proveedor de pago de demostración habilitado para validar el flujo de compra antes de integrar Google Analytics 4.
+- Validación reproducible disponible en `consultas_sql/bloque4_verificacion.sql`.
