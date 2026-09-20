@@ -8,7 +8,7 @@ Este archivo registra qué debe demostrarse durante la implementación y la eval
 | 2 | Proyecto GCP, VM y acceso remoto | Completado |
 | 3 | Odoo Community y PostgreSQL en la nube | Completado |
 | 4 | Configuración de módulos, almacenes y datos base | Completado |
-| 5 | Compras, ventas, cotizaciones y facturación | Pendiente |
+| 5 | Compras, ventas, cotizaciones y facturación | Completado |
 | 6 | Sitio web, catálogo, carrito, impuestos y pago | Pendiente |
 | 7 | Google Analytics 4, segmentos, audiencias y exploraciones | Pendiente |
 | 8 | Flujo RPA en UiPath usando la interfaz de importación | Pendiente |
@@ -64,3 +64,14 @@ La plantilla de trabajo se encuentra en el archivo generado dentro de `outputs/`
 - Repositorio documental `Documentos QuetzalMart` con estructura inicial de directorios y categorías.
 - Proveedor de pago de demostración habilitado para validar el flujo de compra antes de integrar Google Analytics 4.
 - Validación reproducible disponible en `consultas_sql/bloque4_verificacion.sql`.
+
+## Bloque 5 — Transacciones y facturación
+
+- 20 cotizaciones de venta conservadas en borrador, adicionales a las ventas.
+- 20 cotizaciones de compra conservadas en borrador, adicionales a las compras.
+- 150 ventas confirmadas y facturadas: 50 para cada una de las tres sucursales.
+- 100 compras confirmadas, recibidas y vinculadas a 100 facturas de proveedor publicadas.
+- 150 facturas de cliente publicadas y contabilizadas.
+- 50 facturas de venta exportadas físicamente a `outputs/facturas_pdf/`.
+- Los 50 PDF se validaron estructuralmente y una muestra se renderizó para comprobar que no tuviera cortes, superposiciones ni contenido ilegible.
+- Consultas preparadas en `consultas_sql/bloque5_verificacion.sql`.
