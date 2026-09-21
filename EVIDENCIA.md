@@ -10,7 +10,7 @@ Este archivo registra qué debe demostrarse durante la implementación y la eval
 | 4 | Configuración de módulos, almacenes y datos base | Completado |
 | 5 | Compras, ventas, cotizaciones y facturación | Completado |
 | 6 | Sitio web, catálogo, carrito, impuestos y pago | Completado |
-| 7 | Google Analytics 4, segmentos, audiencias y exploraciones | Pendiente |
+| 7 | Google Analytics 4, segmentos, audiencias y exploraciones | Completado |
 | 8 | Flujo RPA en UiPath usando la interfaz de importación | Pendiente |
 | 9 | Consultas SQL para la evaluación | Pendiente |
 | 10 | Capturas y trazabilidad de resultados | Pendiente |
@@ -76,11 +76,24 @@ La plantilla de trabajo se encuentra en el archivo generado dentro de `outputs/`
 - Los 50 PDF se validaron estructuralmente y una muestra se renderizó para comprobar que no tuviera cortes, superposiciones ni contenido ilegible.
 - Consultas preparadas en `consultas_sql/bloque5_verificacion.sql`.
 
+## Bloque 7 — Google Analytics 4
+
+- Propiedad configurada: `QuetzalMart Web 2026`, ID de medición `G-ZB34R27HPD`.
+- Seguimiento instalado mediante la vista QWeb `qm_ga4_tracking`, ejecutada por `infra/seed_block7_ga4.py`.
+- Eventos implementados: `view_item`, `add_to_cart`, `begin_checkout` y `purchase`.
+- Tres segmentos de usuarios guardados: `Usuarios con visualizacion de producto`, `Usuarios con carrito` y `Usuarios compradores`.
+- Cinco segmentos de eventos guardados: `Evento view_item`, `Evento add_to_cart`, `Evento begin_checkout`, `Evento purchase` y `Evento abandono_carrito`.
+- Dos exploraciones guardadas: `Exploracion 1 - Segmentos de usuarios` y `Exploracion 2 - Segmentos de eventos`.
+- Tres audiencias personalizadas publicadas: `Audiencia visitantes de producto`, `Audiencia añadieron al carrito` y `Audiencia compradores`.
+- Detalle operativo, condiciones y validación: `BLOQUE_7_GOOGLE_ANALYTICS.md`.
+- Nota: los eventos y audiencias recién creados pueden tardar en reflejar datos en los informes de GA4.
+
 ## Bloque 6 — Portal web y comercio electrónico
 
 - Portal público personalizado y disponible mediante HTTPS.
-- Logotipo, portada y seis imágenes de categorías creados específicamente para QuetzalMart.
+- Logotipo, portada, seis imágenes de categorías y 60 fotografías de producto creados específicamente para QuetzalMart.
 - 60 productos publicados con imagen, descripción, precio en GTQ e IVA del 12 %.
+- Las fotografías de producto están separadas de las imágenes de categoría y se asignan uno a uno por SKU, usando una imagen generada según el nombre real de cada producto.
 - Seis categorías públicas y catálogo configurado para mostrar 24 productos por página.
 - Envío estándar publicado con tarifa de Q25 y gratuidad desde Q300 para Guatemala, México y El Salvador.
 - Proveedor Demo habilitado en modo de prueba y facturación automática activa.
