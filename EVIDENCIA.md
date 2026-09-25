@@ -11,7 +11,7 @@ Este archivo registra qué debe demostrarse durante la implementación y la eval
 | 5 | Compras, ventas, cotizaciones y facturación | Completado |
 | 6 | Sitio web, catálogo, carrito, impuestos y pago | Completado |
 | 7 | Google Analytics 4, segmentos, audiencias y exploraciones | Completado |
-| 8 | Flujo RPA en UiPath usando la interfaz de importación | Pendiente |
+| 8 | Flujo RPA en UiPath usando la interfaz de importación | En implementación |
 | 9 | Consultas SQL para la evaluación | Pendiente |
 | 10 | Capturas y trazabilidad de resultados | Pendiente |
 | 11 | Manuales 1, 2 y 3 | Pendiente |
@@ -87,6 +87,16 @@ La plantilla de trabajo se encuentra en el archivo generado dentro de `outputs/`
 - Tres audiencias personalizadas publicadas: `Audiencia visitantes de producto`, `Audiencia añadieron al carrito` y `Audiencia compradores`.
 - Detalle operativo, condiciones y validación: `BLOQUE_7_GOOGLE_ANALYTICS.md`.
 - Nota: los eventos y audiencias recién creados pueden tardar en reflejar datos en los informes de GA4.
+
+## Bloque 8 — RPA en UiPath
+
+- Flujo base creado en rpa/QuetzalMart_RPA/Main.xaml.
+- El robot solicita una carpeta raíz y recorre archivos .xlsx de forma recursiva.
+- Detecta únicamente las hojas exactas clientes y productos.
+- Lee las hojas, genera archivos temporales de una sola hoja y prepara la importación.
+- La carga se realiza mediante la interfaz web de Odoo; no se utiliza API de Odoo ni inserción directa en PostgreSQL.
+- Los pasos de UI dependientes de la sesión están identificados con TODO Indicar para capturar los selectores reales en UiPath Studio.
+- Explicación operativa y lista de evidencias: BLOQUE_8_RPA.md.
 
 ## Bloque 6 — Portal web y comercio electrónico
 

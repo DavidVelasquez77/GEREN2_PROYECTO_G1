@@ -10,6 +10,7 @@ Repositorio de trabajo para la implementación del proyecto en Odoo Community, U
 - `capturas/`: evidencias organizadas para los tres manuales.
 - `manual_1/`, `manual_2/`, `manual_3/`: documentos finales.
 - `BLOQUE_7_GOOGLE_ANALYTICS.md`: configuración y evidencia del bloque de GA4.
+- `BLOQUE_8_RPA.md`: flujo, restricciones y evidencia del robot de UiPath.
 - `outputs/`: entregables generados por Codex.
 - `tmp/`: archivos temporales de construcción y verificación.
 
