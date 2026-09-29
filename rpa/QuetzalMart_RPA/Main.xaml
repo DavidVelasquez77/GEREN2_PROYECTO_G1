@@ -149,7 +149,15 @@
                               <OutArgument x:TypeArguments="sd:DataTable">[clientsTable]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="sd:DataTable">[If(clientsTable.Rows.Count &gt; 0, clientsTable.AsEnumerable().Where(Function(row) row.ItemArray.Any(Function(value) value IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(value)))).CopyToDataTable(), clientsTable)]</InArgument>
+                              <InArgument x:TypeArguments="sd:DataTable">[If(clientsTable.AsEnumerable().Any(Function(row) row.ItemArray.Any(Function(value) value IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(value)))), clientsTable.AsEnumerable().Where(Function(row) row.ItemArray.Any(Function(value) value IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(value)))).CopyToDataTable(), clientsTable.Clone())]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Validar campos obligatorios de clientes" sap:VirtualizedContainerService.HintSize="484,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_ClientsValidateRequired">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="sd:DataTable">[clientsTable]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="sd:DataTable">[If(clientsTable.AsEnumerable().Any(Function(row) Not String.IsNullOrWhiteSpace(Convert.ToString(row(0))) AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(row(1)))), clientsTable.AsEnumerable().Where(Function(row) Not String.IsNullOrWhiteSpace(Convert.ToString(row(0))) AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(row(1)))).CopyToDataTable(), clientsTable.Clone())]</InArgument>
                             </Assign.Value>
                           </Assign>
                           <Assign DisplayName="Crear archivo temporal de clientes" sap:VirtualizedContainerService.HintSize="484,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_2">
@@ -502,7 +510,15 @@
                               <OutArgument x:TypeArguments="sd:DataTable">[productsTable]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="sd:DataTable">[If(productsTable.Rows.Count &gt; 0, productsTable.AsEnumerable().Where(Function(row) row.ItemArray.Any(Function(value) value IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(value)))).CopyToDataTable(), productsTable)]</InArgument>
+                              <InArgument x:TypeArguments="sd:DataTable">[If(productsTable.AsEnumerable().Any(Function(row) row.ItemArray.Any(Function(value) value IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(value)))), productsTable.AsEnumerable().Where(Function(row) row.ItemArray.Any(Function(value) value IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(value)))).CopyToDataTable(), productsTable.Clone())]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Validar campos obligatorios de productos" sap:VirtualizedContainerService.HintSize="484,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_ProductsValidateRequired">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="sd:DataTable">[productsTable]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="sd:DataTable">[If(productsTable.AsEnumerable().Any(Function(row) Not String.IsNullOrWhiteSpace(Convert.ToString(row("Name"))) AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(row("Product Type")))), productsTable.AsEnumerable().Where(Function(row) Not String.IsNullOrWhiteSpace(Convert.ToString(row("Name"))) AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(row("Product Type")))).CopyToDataTable(), productsTable.Clone())]</InArgument>
                             </Assign.Value>
                           </Assign>
                           <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="Normalizar códigos de barras" sap:VirtualizedContainerService.HintSize="484,567.3333333333334" sap2010:WorkflowViewState.IdRef="ForEachRow_NormalizeBarcode" Values="[If(productsTable.Columns.Contains(&quot;Barcode&quot;), productsTable.AsEnumerable(), Enumerable.Empty(Of DataRow)())]">
@@ -554,7 +570,7 @@
                                     <OutArgument x:TypeArguments="x:Object">[trackRow("Rastrear inventario")]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
-                                    <InArgument x:TypeArguments="x:Object">[True]</InArgument>
+                                    <InArgument x:TypeArguments="x:Object">[If(productsTable.Columns.Contains("Product Type") AndAlso (String.Equals(Convert.ToString(trackRow("Product Type")).Trim(), "Service", StringComparison.OrdinalIgnoreCase) OrElse String.Equals(Convert.ToString(trackRow("Product Type")).Trim(), "Consumable", StringComparison.OrdinalIgnoreCase)), False, True)]</InArgument>
                                   </Assign.Value>
                                 </Assign>
                               </ActivityAction>
@@ -822,7 +838,7 @@
                               <OutArgument x:TypeArguments="sd:DataTable">[inventoryTable]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="sd:DataTable">[If(productsTable.AsEnumerable().Any(Function(row) row("Cantidad a la mano") IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(row("Cantidad a la mano")))), productsTable.AsEnumerable().Where(Function(row) row("Cantidad a la mano") IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(row("Cantidad a la mano")))).CopyToDataTable(), productsTable.Clone()).DefaultView.ToTable(False, inventoryKeyColumn, "Cantidad a la mano")]</InArgument>
+                              <InArgument x:TypeArguments="sd:DataTable">[If(productsTable.AsEnumerable().Any(Function(row) row("Cantidad a la mano") IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(row("Cantidad a la mano"))) AndAlso Not String.Equals(Convert.ToString(row("Product Type")).Trim(), "Service", StringComparison.OrdinalIgnoreCase) AndAlso Not String.Equals(Convert.ToString(row("Product Type")).Trim(), "Consumable", StringComparison.OrdinalIgnoreCase)), productsTable.AsEnumerable().Where(Function(row) row("Cantidad a la mano") IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(row("Cantidad a la mano"))) AndAlso Not String.Equals(Convert.ToString(row("Product Type")).Trim(), "Service", StringComparison.OrdinalIgnoreCase) AndAlso Not String.Equals(Convert.ToString(row("Product Type")).Trim(), "Consumable", StringComparison.OrdinalIgnoreCase)).CopyToDataTable(), productsTable.Clone()).DefaultView.ToTable(False, inventoryKeyColumn, "Cantidad a la mano")]</InArgument>
                             </Assign.Value>
                           </Assign>
                           <Assign DisplayName="Mapear producto de inventario" sap:VirtualizedContainerService.HintSize="484,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_RenameInventoryProduct_Product">
