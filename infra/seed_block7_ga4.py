@@ -28,6 +28,9 @@ tracking_js = r"""
         return isNaN(result) ? 0 : result;
     }
     function fire(name, params) {
+        window.__qm_ga4_events = window.__qm_ga4_events || {};
+        if (window.__qm_ga4_events[name]) { return; }
+        window.__qm_ga4_events[name] = true;
         params = params || {};
         params.currency = params.currency || 'GTQ';
         gtag('event', name, params);
@@ -48,17 +51,24 @@ tracking_js = r"""
         return {item_id: String(id), item_name: name || 'Producto QuetzalMart', price: number(price), quantity: 1};
     }
     function productView() {
-        if (/\/shop\/product\//.test(location.pathname)) {
+        // Odoo 19 usa /shop/<slug> para la ficha, no /shop/product/<slug>.
+        var isProductPage = /^\/shop\/[^/]+$/.test(location.pathname)
+            && !/^\/shop\/(cart|address|payment|confirm_order|confirmation|category|page)/.test(location.pathname)
+            && !!document.querySelector('#product_details, #add_to_cart');
+        if (isProductPage) {
             fire('view_item', {value: itemFrom(document).price, items: [itemFrom(document)]});
         }
     }
     function checkoutView() {
-        if (/\/shop\/checkout/.test(location.pathname)) {
+        // El flujo de compra de Odoo entra por /shop/address y continúa por
+        // /shop/confirm_order o /shop/payment.
+        if (/^\/shop\/(address|checkout|confirm_order|payment)/.test(location.pathname)) {
             fire('begin_checkout', {items: []});
         }
     }
     function purchaseView() {
-        if (!/\/shop\/confirmation/.test(location.pathname)) { return; }
+        // El pago de demostración de Odoo termina en /payment/status.
+        if (!/^\/(shop\/confirmation|payment\/status)/.test(location.pathname)) { return; }
         var body = document.body.innerText || '';
         var order = (body.match(/Orden\s+([A-Z0-9/.-]+)/i) || [])[1] || ('web-' + Date.now());
         var total = number(text('.amount_total_summary, #cart_total, .order_total, .order_total_untaxed'));
