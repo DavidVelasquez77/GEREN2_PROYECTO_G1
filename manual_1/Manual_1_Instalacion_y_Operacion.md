@@ -198,13 +198,21 @@ Para crear o revisar un cliente:
 
 *Figura 3. Directorio de contactos de Odoo. En esta vista pueden coexistir clientes y proveedores; se deben usar los filtros de tipo de contacto para separar ambos grupos.*
 
+![Contactos importados por el RPA: PRUEBA SS 1 a 4](../capturas/manual_1/23_contactos_RPA_PRUEBA_SS_1_a_4.png)
+
+*Figura 4. Resultado visible de la carga: aparecen los cuatro contactos de prueba importados por el RPA.*
+
 ## 3.4 Productos e inventario
 
 Los 60 artículos del catálogo inicial utilizan referencias `QM-001` a `QM-060`. Para revisar un producto, abrir **Inventario → Productos** o **Ventas → Productos**, buscar por referencia y confirmar tipo de producto, unidad, precio, costo, categoría y seguimiento de existencias.
 
 ![Ficha de producto de demostración en Odoo](../capturas/manual_1/08_producto_demostracion.png)
 
-*Figura 4. Ficha de un producto de demostración usado para probar la configuración de precio, costo y seguimiento de inventario. No debe confundirse con el conjunto maestro `QM-001` a `QM-060`.*
+*Figura 5. Ficha de un producto de demostración usado para probar la configuración de precio, costo y seguimiento de inventario. No debe confundirse con el conjunto maestro `QM-001` a `QM-060`.*
+
+![Catálogo público de productos de QuetzalMart](../capturas/manual_1/02_catalogo_productos.png)
+
+*Figura 6. Catálogo del sitio web con imágenes, nombres y precios de los productos.*
 
 En la carga de inventario físico:
 
@@ -217,11 +225,11 @@ En la carga de inventario físico:
 
 ![Lista real de ajustes de inventario](../capturas/manual_1/04_ajustes_inventario.png)
 
-*Figura 5. Lista de ajustes de inventario y acción de aplicación.*
+*Figura 7. Lista de ajustes de inventario y acción de aplicación.*
 
 ![Diálogo de motivo para aplicar ajustes](../capturas/manual_1/15_motivo_ajuste_inventario.png)
 
-*Figura 6. Diálogo de Odoo que solicita el motivo del ajuste y la confirmación **Actualizar cantidades**.*
+*Figura 8. Diálogo de Odoo que solicita el motivo del ajuste y la confirmación **Actualizar cantidades**.*
 
 ## 3.5 Órdenes de compra y recepción
 
@@ -236,15 +244,15 @@ Cada compra que cuenta para el requisito debe estar confirmada; una solicitud de
 
 ![Listado auténtico de solicitudes y órdenes de compra](../capturas/manual_1/05_ordenes_compra_listado.png)
 
-*Figura 7. Vista de compras. La lista muestra 120 registros en esa captura; los indicadores superiores separan cotizaciones, órdenes y métricas de la vista.*
+*Figura 9. Vista de compras. La lista muestra 120 registros en esa captura; los indicadores superiores separan cotizaciones, órdenes y métricas de la vista.*
 
 ![Orden de compra P00120 con recepción y factura vinculadas](../capturas/manual_1/06_orden_compra_detalle.png)
 
-*Figura 8. Orden `P00120`, asociada a un proveedor, con acceso a factura de proveedor y recepción.*
+*Figura 10. Orden `P00120`, asociada a un proveedor, con acceso a factura de proveedor y recepción.*
 
 ![Factura de proveedor vinculada a la orden P00120](../capturas/manual_1/07_factura_proveedor_odoo.png)
 
-*Figura 9. Factura de proveedor `BILL/2026/08/0064`, asociada a la referencia de compra `B5-PO-100`. Para comprobarla, confirmar que el estado sea publicado/registrado.*
+*Figura 11. Factura de proveedor `BILL/2026/08/0064`, asociada a la referencia de compra `B5-PO-100`. Para comprobarla, confirmar que el estado sea publicado/registrado.*
 
 ## 3.6 Ventas, cotizaciones y facturas de cliente
 
@@ -260,7 +268,11 @@ En los datos del proyecto hay **20 cotizaciones de venta** y **150 ventas confir
 
 ![Listado de órdenes de venta de Odoo con el contador de registros](../capturas/manual_1/01_ventas_ordenes_162.png)
 
-*Figura 10. Lista de órdenes de venta en Odoo. Se observan 162 registros en total, pedidos recientes y su estado de facturación. Para mostrar el detalle del proceso, todavía conviene añadir una captura de una orden de venta abierta y confirmada.*
+*Figura 12. Lista de órdenes de venta en Odoo. Se observan 162 registros en total, pedidos recientes y su estado de facturación.*
+
+![Detalle de la venta web S00178 con pago y factura](../capturas/manual_1/16_venta_web_S00178_pago_y_factura.png)
+
+*Figura 13. Orden de venta web `S00178`, con pago de demostración registrado y acceso a la factura asociada. El método Demo sirve para pruebas y no representa un cobro real.*
 
 ## 3.7 Empleados y contratos
 
@@ -274,7 +286,17 @@ Para registrar a una persona del equipo:
 
 Los datos del proyecto contemplan 35 empleados activos, seis puestos, cinco departamentos y 35 contratos simulados. Los archivos de contratos del paquete documental son **borradores simulados sin firma**; no deben presentarse como contratos legales vigentes.
 
-**Evidencia visual por añadir antes de exportar el manual:** captura de la lista de empleados con su total y de la configuración de puestos/departamentos. No hay una captura real de esas vistas en el conjunto de imágenes disponible.
+![Lista de empleados de Odoo con 35 registros](../capturas/manual_1/17_empleados_35_registros.png)
+
+*Figura 14. Vista de empleados; el paginador muestra los 35 registros del proyecto.*
+
+![Cinco departamentos y sus cantidades de empleados](../capturas/manual_1/18_departamentos_5_registros.png)
+
+*Figura 15. Directorio de departamentos con los conteos asociados de empleados.*
+
+![Seis puestos de trabajo configurados](../capturas/manual_1/19_puestos_6_cargos.png)
+
+*Figura 16. Catálogo de puestos de trabajo; la lista contiene seis cargos.*
 
 ## 3.8 Facturas y archivos PDF
 
@@ -286,15 +308,27 @@ Los datos del proyecto contemplan 35 empleados activos, seis puestos, cinco depa
 - Los 50 PDF existentes se incorporan al mismo archivo documental con `infra/archive_existing_invoices_to_dms.py`. La carpeta `outputs/facturas_pdf/` conserva además la copia del proyecto para entregar; no es la carpeta interna de Odoo.
 - Para verificar una factura nueva: publicarla, abrir **Documentos**, entrar a **Facturas PDF** y buscar el nombre de la factura. La prueba automatizada está descrita en `infra/test_invoice_dms_auto_archive.py`; el módulo y su instalador están en `infra/odoo_addons/quetzalmart_invoice_dms/` e `infra/install_invoice_dms_module.sh`.
 
+![Listado de facturas de cliente en Odoo](../capturas/manual_1/20_facturas_cliente_listado_163.png)
+
+*Figura 17. Listado de facturas de cliente; la vista muestra 163 registros y sus estados.*
+
+![Detalle de la factura INV/2026/00163](../capturas/manual_1/21_factura_detalle_INV_2026_00163.png)
+
+*Figura 18. Factura de cliente `INV/2026/00163`, vinculada a la venta `S00178`, con total de Q75,89 y estado pagado.*
+
 ## 3.9 Correos y documentos
 
 Las plantillas transaccionales y la campaña se consultan desde las aplicaciones de Ventas/Facturación y Marketing por correo. En el entorno de demostración, Mailpit sirve como buzón local de pruebas. La evidencia de Mailpit demuestra que Odoo generó y entregó el correo al capturador local; **no demuestra entrega a Gmail ni a un servidor SMTP externo**.
 
 ![Bandeja real de Mailpit con mensajes de prueba de QuetzalMart](../capturas/manual_1/13_correo_mailpit.png)
 
-*Figura 11. Bandeja de Mailpit con mensajes de prueba. Es evidencia interna de generación/captura, no de recepción externa.*
+*Figura 19. Bandeja de Mailpit con mensajes de prueba. Es evidencia interna de generación/captura, no de recepción externa.*
 
 Para documentos, abrir la aplicación OCA DMS y clasificar cada archivo en su carpeta/categoría, usando etiquetas para facilitar la búsqueda. La existencia de PDFs no convierte un contrato en firmado: los contratos del proyecto deben identificarse como simulados y no firmados.
+
+![Archivos y categorías de Odoo Documentos](../capturas/manual_1/22_documentos_archivos_y_categorias.png)
+
+*Figura 20. Vista de OCA DMS con 75 archivos y categorías visibles: 5 contratos de empleado, 5 de outsourcing, 60 facturas de cliente y 5 facturas de proveedor.*
 
 ---
 
@@ -321,19 +355,107 @@ El RPA **no usa una API de Odoo**, no ejecuta SQL y no escribe directamente en P
 
 ![UiPath solicita seleccionar la carpeta raíz de los Excel](../capturas/manual_1/09_rpa_solicitud_carpeta.png)
 
-*Figura 12. Diálogo de UiPath para seleccionar la carpeta que contiene los archivos del auxiliar.*
+*Figura 21. Diálogo de UiPath para seleccionar la carpeta que contiene los archivos del auxiliar.*
 
 ![Secuencia del flujo UiPath para navegar a Contactos e importar](../capturas/manual_1/10_rpa_flujo_importacion.png)
 
-*Figura 13. Captura real del diseñador UiPath con la secuencia de apertura de Contactos y su flujo de importación.*
+*Figura 22. Captura del diseñador UiPath con la secuencia de apertura de Contactos y su flujo de importación.*
 
 ![Pantalla de Odoo usada por el RPA para importar productos](../capturas/manual_1/11_importacion_productos_odoo.png)
 
-*Figura 14. El RPA ejecuta la importación en la interfaz web; la captura no proviene de una llamada API.*
+*Figura 23. El RPA ejecuta la importación en la interfaz web; la captura no proviene de una llamada API.*
 
 ![El flujo termina y solicita validar los registros en Odoo](../capturas/manual_1/12_rpa_fin_flujo.png)
 
-*Figura 15. Mensaje final del flujo: indica expresamente que aún se deben validar los registros en Odoo. Para la demostración, mostrar también el resultado importado y el log de UiPath.*
+*Figura 24. Mensaje final del flujo: indica expresamente que aún se deben validar los registros en Odoo. El resultado de contactos importados se muestra en la Figura 4.*
+
+### Secuencia ampliada del flujo en UiPath
+
+Las siguientes capturas muestran el diseño del flujo de extremo a extremo: selección de carpeta, recorrido de libros, preparación de las hojas, navegación por la interfaz de Odoo, importación de clientes y productos y confirmación de los ajustes de inventario. Las capturas son del diseñador de UiPath; la validación de los datos cargados se complementa con las Figuras 4, 14–18 y 20.
+
+![Figura 25. Solicitud de carpeta raíz en UiPath](../capturas/manual_1/24_parte1_rpa_solicitar_carpeta.png)
+
+*Figura 25. El flujo solicita la carpeta raíz que contiene los Excel y registra el inicio del recorrido.*
+
+![Figura 26. Recorrido recursivo de libros Excel](../capturas/manual_1/24_parte2_rpa_recorre_excel.png)
+
+*Figura 26. Recorrido de archivos Excel y preparación de la lectura de sus hojas.*
+
+![Figura 27. Lectura de estructura y búsqueda de hojas requeridas](../capturas/manual_1/24_parte3_rpa_recorre_excel.png)
+
+*Figura 27. Lectura del libro y comprobación de las hojas con los nombres requeridos.*
+
+![Figura 28. Preparación del archivo temporal de clientes](../capturas/manual_1/24_parte4_rpa_prepara_excel_clientes.png)
+
+*Figura 28. Preparación de la tabla de clientes que se enviará al importador de Odoo.*
+
+![Figura 29. Inicio de navegación para importar clientes](../capturas/manual_1/24_parte5_rpa_flujo_clientes.png)
+
+*Figura 29. Secuencia de UiPath que abre la pantalla de Contactos y comienza la importación de clientes.*
+
+![Figura 30. Flujo de importación de clientes, parte 6](../capturas/manual_1/24_parte6_rpa_flujo_clientes.png)
+
+*Figura 30. Continuación de la secuencia de importación de clientes en la interfaz de Odoo.*
+
+![Figura 31. Flujo de importación de clientes, parte 7](../capturas/manual_1/24_parte7_rpa_flujo_clientes.png)
+
+*Figura 31. Acciones de UiPath para seleccionar y configurar la importación de clientes.*
+
+![Figura 32. Flujo de importación de clientes, parte 8](../capturas/manual_1/24_parte8_rpa_flujo_clientes.png)
+
+*Figura 32. Continuación de las acciones de importación de clientes.*
+
+![Figura 33. Flujo de importación de clientes, parte 9](../capturas/manual_1/24_parte9_rpa_flujo_clientes.png)
+
+*Figura 33. Secuencia de validación y confirmación de la importación de clientes.*
+
+![Figura 34. Flujo de importación de clientes, parte 10](../capturas/manual_1/24_parte10_rpa_flujo_clientes.png)
+
+*Figura 34. Paso de confirmación de la importación de clientes mediante el importador web de Odoo.*
+
+![Figura 35. Inicio de lectura y validación de productos](../capturas/manual_1/24_parte11_rpa_flujo_productos.png)
+
+*Figura 35. El flujo detecta la hoja `productos`, limpia filas vacías y valida los campos requeridos.*
+
+![Figura 36. Flujo de importación de productos, parte 12](../capturas/manual_1/24_parte12_rpa_flujo_productos.png)
+
+*Figura 36. Continuación de las validaciones y preparación de los datos de productos.*
+
+![Figura 37. Flujo de importación de productos, parte 13](../capturas/manual_1/24_parte13_rpa_flujo_productos.png)
+
+*Figura 37. Preparación de los campos de producto para la importación.*
+
+![Figura 38. Flujo de importación de productos, parte 14](../capturas/manual_1/24_parte14_rpa_flujo_productos.png)
+
+*Figura 38. Continuación de la secuencia de importación de productos.*
+
+![Figura 39. Flujo de importación de productos, parte 15](../capturas/manual_1/24_parte15_rpa_flujo_productos.png)
+
+*Figura 39. Configuración de acciones en la interfaz de Odoo para productos.*
+
+![Figura 40. Flujo de importación de productos, parte 16](../capturas/manual_1/24_parte16_rpa_flujo_productos.png)
+
+*Figura 40. Continuación de la interacción automatizada con la pantalla de productos.*
+
+![Figura 41. Flujo de importación de productos, parte 17](../capturas/manual_1/24_parte17_rpa_flujo_productos.png)
+
+*Figura 41. Acciones de UiPath para completar la carga de productos.*
+
+![Figura 42. Flujo de importación de productos, parte 18](../capturas/manual_1/24_parte18_rpa_flujo_productos.png)
+
+*Figura 42. Continuación de la automatización de productos y su proceso de importación.*
+
+![Figura 43. Flujo de importación de productos, parte 19](../capturas/manual_1/24_parte19_rpa_flujo_productos.png)
+
+*Figura 43. Pasos finales de la carga de productos en Odoo.*
+
+![Figura 44. Flujo de importación de productos, parte 20](../capturas/manual_1/24_parte20_rpa_flujo_productos.png)
+
+*Figura 44. Acciones asociadas a la aplicación de cantidades de inventario.*
+
+![Figura 45. Flujo de importación de productos, parte 21](../capturas/manual_1/24_parte21_rpa_flujo_productos.png)
+
+*Figura 45. El flujo sustituye el motivo predeterminado del ajuste y pulsa **Actualizar cantidades** para confirmar.*
 
 ## 4.3 Validaciones importantes
 
@@ -364,30 +486,26 @@ El equipo reportó la ejecución final del RPA con la carpeta exacta `datos\prue
 
 # 5. Lista de evidencia para la entrega
 
-Las capturas incluidas son imágenes reales de las pantallas del proyecto, no ilustraciones generadas. Antes de convertir este Markdown a PDF, completar las evidencias marcadas como faltantes y comprobar que las imágenes se vean con suficiente resolución.
+Las capturas incluidas son imágenes reales de las pantallas del proyecto, no ilustraciones generadas. Antes de convertir este Markdown a PDF, comprobar que las imágenes se vean con suficiente resolución y añadir, si la entrega lo requiere, las evidencias adicionales recomendadas.
 
 | Requisito del manual | Evidencia incluida o acción final |
 |---|---|
 | Instalación del sistema | Procedimiento reproducible y arquitectura descritos; adjuntar captura reciente de VM saludable y del login HTTPS si el docente pide evidencia visual de instalación. |
 | Tienda/productos | Captura real del catálogo de productos. |
-| Carga masiva de clientes/productos | Pantalla de importación y flujo RPA incluidos; completar con una captura del resultado de **Probar/Importar** sin errores y los registros ya visibles. |
+| Carga masiva de clientes/productos | Secuencia ampliada del flujo UiPath incluida; los contactos `PRUEBA SS 1–4` aparecen en Odoo. La Figura 1 documenta la pantalla de importación de productos. |
 | Órdenes de compra | Capturas reales de listado, orden confirmada y factura de proveedor. |
-| Ventas | Captura real de la lista con 162 órdenes incluida. Añadir una vista de detalle de una orden confirmada para mostrar sus productos y acciones. |
-| CRM/clientes | Capturas reales de directorio y ficha de un contacto de demostración. |
-| Empleados | **Pendiente:** lista de empleados y vista con puestos/departamentos. |
-| Facturas | Captura real de una factura de proveedor; 50 PDFs de cliente disponibles en `outputs/facturas_pdf/`. Para la evidencia de Odoo, agregar captura de una factura de cliente publicada y de la lista de facturas. |
-| Archivo documental de facturas | La implementación automática está descrita y cuenta con módulo de Odoo; agregar captura reciente de **Documentos → Facturas PDF** con el total y un archivo nuevo posterior a su publicación. |
-| RPA | Capturas reales de selección de carpeta, flujo y pantalla del importador. Añadir salida final del robot y registro importado si se va a mostrar la ejecución completa. |
+| Ventas | Lista de órdenes y detalle de la venta web `S00178` incluidos. |
+| CRM/clientes | Directorio, ficha de contacto y los cuatro contactos `PRUEBA SS 1–4` incluidos. |
+| Empleados | Lista de 35 empleados, cinco departamentos y seis puestos incluidos. |
+| Facturas | Factura de proveedor, listado de 163 facturas de cliente y detalle de `INV/2026/00163` incluidos; los 50 PDFs están en `outputs/facturas_pdf/`. |
+| Archivo documental | Captura de OCA DMS incluida con 75 archivos y conteos por categoría: 5 contratos de empleado, 5 de outsourcing, 60 facturas de cliente y 5 de proveedor. |
+| RPA | Capturas ampliadas del diseñador y de los pasos de importación incluidas; los contactos resultantes se muestran en Odoo. La salida/log de UiPath puede añadirse si se desea documentar también la ejecución final. |
 | Ajuste de inventario | Captura real de la lista y del diálogo con motivo y **Actualizar cantidades**. |
 
 ## Capturas adicionales recomendadas
 
 1. Google Cloud Console: VM `quetzalmart-odoo` en ejecución y configuración sin el puerto 5432 público.
-2. Odoo: detalle de una orden de venta confirmada con sus líneas de productos.
-3. Odoo: empleados, departamentos y puestos con sus cantidades.
-4. Odoo: facturas de cliente publicadas y factura abierta con opción de impresión.
-5. UiPath: salida de la corrida exitosa para `datos\prueba_rpa\lote_auxiliar`.
-6. Odoo: búsqueda de los clientes y productos que acaba de importar el RPA.
+2. UiPath: salida de la corrida para `datos\prueba_rpa\lote_auxiliar`, si se desea mostrar el log además del flujo y los registros ya comprobados en Odoo.
 
 > Antes de compartir el PDF, ocultar cualquier dirección de correo personal, identificador sensible, token, contraseña o dato de acceso que accidentalmente aparezca en las capturas. No incluir `.secrets/`, archivos `.env` ni claves de acceso.
 
