@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" role="img" aria-labelledby="title desc">
+  <title id="title">Ingresos totales por campaña de sesión, 30 de septiembre de 2026</title>
+  <desc id="desc">Gráfico horizontal de ingresos en quetzales. beneficios_temporada_2026 registra Q106.42 y not set Q38.56. Las otras seis filas registran Q0. El total del informe es Q144.98.</desc>
+  <style>
+    text{font-family:Arial,Helvetica,sans-serif;fill:#26352f}.title{font-size:23px;font-weight:700}.sub{font-size:14px;fill:#596962}.label{font-size:14px}.tick{font-size:12px;fill:#596962}.value{font-size:14px;font-weight:700}.grid{stroke:#dce5df;stroke-width:1}.axis{stroke:#82948a;stroke-width:1.2}.named{fill:#23845c}.unset{fill:#e47f24}.zero{fill:#d4ded8}
+  </style>
+  <text class="title" x="28" y="34">Ingresos totales por campaña de sesión</text>
+  <text class="sub" x="28" y="59">GA4 · 30 septiembre 2026 · total del informe: Q144,98</text>
+  <rect x="28" y="74" width="12" height="12" rx="2" class="named"/><text class="sub" x="46" y="85">Campaña identificada</text>
+  <rect x="210" y="74" width="12" height="12" rx="2" class="unset"/><text class="sub" x="228" y="85">(not set)</text>
+
+  <line class="grid" x1="365" y1="104" x2="365" y2="414"/><line class="grid" x1="485" y1="104" x2="485" y2="414"/><line class="grid" x1="605" y1="104" x2="605" y2="414"/><line class="grid" x1="725" y1="104" x2="725" y2="414"/><line class="grid" x1="845" y1="104" x2="845" y2="414"/>
+  <text class="label" x="350" y="130" text-anchor="end">validacion_ga4_sep2026</text><rect class="zero" x="365" y="115" width="2" height="20" rx="1"/><text class="value" x="375" y="130">Q0,00</text>
+  <text class="label" x="350" y="167" text-anchor="end">ga4_demostracion_v2</text><rect class="zero" x="365" y="152" width="2" height="20" rx="1"/><text class="value" x="375" y="167">Q0,00</text>
+  <text class="label" x="350" y="204" text-anchor="end">ga4_demo_utm_2026</text><rect class="zero" x="365" y="189" width="2" height="20" rx="1"/><text class="value" x="375" y="204">Q0,00</text>
+  <text class="label" x="350" y="241" text-anchor="end">campana_validacion_20260930</text><rect class="zero" x="365" y="226" width="2" height="20" rx="1"/><text class="value" x="375" y="241">Q0,00</text>
+  <text class="label" x="350" y="278" text-anchor="end">beneficios_temporada_2026</text><rect class="named" x="365" y="263" width="425.68" height="20" rx="3"/><text class="value" x="799" y="278">Q106,42</text>
+  <text class="label" x="350" y="315" text-anchor="end">(not set)</text><rect class="unset" x="365" y="300" width="154.24" height="20" rx="3"/><text class="value" x="527" y="315">Q38,56</text>
+  <text class="label" x="350" y="352" text-anchor="end">(direct)</text><rect class="zero" x="365" y="337" width="2" height="20" rx="1"/><text class="value" x="375" y="352">Q0,00</text>
+  <text class="label" x="350" y="389" text-anchor="end">(cross-network)</text><rect class="zero" x="365" y="374" width="2" height="20" rx="1"/><text class="value" x="375" y="389">Q0,00</text>
+
+  <line class="axis" x1="365" y1="414" x2="845" y2="414"/>
+  <text class="tick" x="365" y="434" text-anchor="middle">Q0</text><text class="tick" x="485" y="434" text-anchor="middle">Q30</text><text class="tick" x="605" y="434" text-anchor="middle">Q60</text><text class="tick" x="725" y="434" text-anchor="middle">Q90</text><text class="tick" x="845" y="434" text-anchor="middle">Q120</text>
+  <text class="sub" x="28" y="458">La campaña beneficios_temporada_2026 concentra el 73,4 % de los ingresos.</text>
+</svg>
