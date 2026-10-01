@@ -62,6 +62,13 @@ La plantilla de trabajo se encuentra en el archivo generado dentro de `outputs/`
 - Catálogo web publicado con 60 productos, seis categorías y precios en quetzales; la tienda presenta 20 productos por página.
 - Impuestos disponibles: IVA ventas 12 %, IVA compras 12 %, retención IVA -12 % y retención ISR -5 %.
 - Repositorio documental `Documentos QuetzalMart` con estructura inicial de directorios y categorías.
+- Gestión documental verificada el 29/09/2026: OCA DMS instalado; carpeta raíz visible para el administrador; tres subcarpetas (`Facturas de proveedores`, `Contratos de outsourcing`, `Contratos de empleados`) con 5 PDF cada una. Los 15 archivos tienen categoría y dos etiquetas (tipo documental y `2026`). Ruta de Odoo: `https://quetzalmart.34-9-149-41.sslip.io/odoo/action-245/1/action-245`.
+- Las cinco facturas PDF se exportaron desde facturas de proveedor **contabilizadas** en Odoo (`account.move` 151-155; `BILL/2026/08/0001` a `0005`) y se vincularon a esos registros en DMS.
+- Los cinco documentos de empleados son **acuerdos de demostración** hechos con los datos de `hr.contract` 1-5. Incluyen estilo editorial, cláusulas ilustrativas y registro del flujo; llevan aviso visible de que son simulados, no firmados y sin validez jurídica.
+- Los cinco documentos de outsourcing son **acuerdos simulados completos** vinculados a los proveedores de Odoo (`res.partner` 72-76), con servicios, alcance, fechas, tarifas de ejemplo, responsabilidades y un ciclo demostrativo de preparación, revisión, aceptación simulada y archivo. Las partes y términos son ficticios; no constituyen contratos vigentes.
+- La instalación marca el módulo Odoo `sign` como `uninstallable`; por ello el ciclo se representó en los PDF, mediante la etiqueta DMS `Flujo demo completado` y una nota interna en el historial de cada uno de los cinco documentos de outsourcing. No se enviaron solicitudes a terceros ni se registraron firmas electrónicas.
+- Los acuerdos simulados usan un diseño verde y naranja, con jerarquía visual, tablas y avisos destacados. Las cinco facturas conservan el PDF oficial emitido por Odoo.
+- Copias de los 15 PDF están en `outputs/dms_verified/`; se comprobó que abren y contienen texto legible, y se inspeccionó visualmente una factura, un acuerdo laboral y un acuerdo outsourcing. Las capturas de pantalla de Odoo siguen pendientes de guardarse como archivos de evidencia.
 - Proveedor de pago de demostración habilitado para validar el flujo de compra antes de integrar Google Analytics 4.
 - Validación reproducible disponible en `consultas_sql/bloque4_verificacion.sql`.
 
