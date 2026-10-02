@@ -39,9 +39,23 @@ services:
     networks:
       - quetzalmart_internal
 
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: quetzalmart-mailpit
+    restart: unless-stopped
+    environment:
+      MP_DATABASE: /data/mailpit.db
+    volumes:
+      - mailpit_data:/data
+    ports:
+      - "127.0.0.1:8025:8025"
+    networks:
+      - quetzalmart_internal
+
 volumes:
   postgres_data:
   odoo_data:
+  mailpit_data:
 
 networks:
   quetzalmart_internal:

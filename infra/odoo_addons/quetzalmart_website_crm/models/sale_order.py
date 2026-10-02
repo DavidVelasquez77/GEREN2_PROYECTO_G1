@@ -1,6 +1,6 @@
 import logging
 
-from odoo import _, models
+from odoo import _, fields, models
 
 
 _logger = logging.getLogger(__name__)
@@ -8,6 +8,12 @@ _logger = logging.getLogger(__name__)
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    qm_campaign_sent_at = fields.Datetime(
+        string="QuetzalMart post-purchase campaign sent at",
+        copy=False,
+        readonly=True,
+    )
 
     def action_confirm(self):
         result = super().action_confirm()
@@ -93,3 +99,48 @@ class SaleOrder(models.Model):
                     "Could not create a CRM opportunity for website order %s",
                     order.name,
                 )
+
+    def _qm_send_post_purchase_campaign(self):
+        """Send the existing marketing creative once, after the invoice mail succeeds."""
+        self.ensure_one()
+        if (
+            self.qm_campaign_sent_at
+            or not self.website_id
+            or not self.opportunity_id
+            or not self.partner_id.email
+        ):
+            return False
+
+        mailing = self.env["mailing.mailing"].sudo().search(
+            [
+                ("subject", "=", "QuetzalMart | Beneficios de temporada y compra segura"),
+                ("state", "=", "done"),
+            ],
+            order="id desc",
+            limit=1,
+        )
+        if not mailing or not mailing.body_html:
+            _logger.warning("No sent QuetzalMart campaign creative is available for %s", self.name)
+            return False
+
+        message = self.env["mail.mail"].sudo().create(
+            {
+                "subject": mailing.subject,
+                "body_html": mailing.body_html,
+                "email_from": mailing.email_from,
+                "email_to": self.partner_id.email,
+                "model": "crm.lead",
+                "res_id": self.opportunity_id.id,
+                "auto_delete": False,
+            }
+        )
+        message.send(raise_exception=True)
+        if message.state != "sent":
+            raise RuntimeError("The post-purchase campaign was not sent for %s" % self.name)
+        self.qm_campaign_sent_at = fields.Datetime.now()
+        _logger.info(
+            "Sent QuetzalMart campaign after invoice for order %s to partner %s",
+            self.name,
+            self.partner_id.id,
+        )
+        return True

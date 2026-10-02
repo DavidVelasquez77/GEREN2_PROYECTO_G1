@@ -3,172 +3,201 @@
 ## Manual 3 — Inteligencia de negocios con Google Analytics 4
 
 **Proyecto:** Implementación ERP y comercio electrónico  
-**Versión:** 1.0  
-**Fecha del corte analizado:** 30 de septiembre de 2026  
-**Fuente:** Propiedad GA4 «QuetzalMart Web»  
-**Formato:** Markdown con gráficos vectoriales SVG
+**Versión:** 1.2  
+**Actualizado:** 2 de octubre de 2026  
+**Propiedad analizada:** QuetzalMart Web 2026  
+**Moneda:** Quetzales (Q)
 
 ---
 
 ## 1. Resumen ejecutivo
 
-Este análisis utiliza el informe **Adquisición de tráfico: Campaña de la sesión** de GA4, filtrado para el 30 de septiembre de 2026. En el corte observado, el informe presenta **21 sesiones**, **237 eventos** y **Q144,98 de ingresos totales**. La campaña `beneficios_temporada_2026` aparece atribuida con **Q106,42** y un evento clave.
+Este manual presenta una lectura de negocio construida con los informes y exploraciones visibles en la propiedad GA4 de QuetzalMart. La vista principal usa el periodo **4 de septiembre–1 de octubre de 2026** (últimos 28 días disponibles al consultar el informe). Las exploraciones guardadas muestran el periodo **27 de septiembre–2 de octubre de 2026**. El resultado diario de campaña se identifica aparte como corte del **30 de septiembre**. Las cifras de ventanas diferentes no se suman ni se comparan como si fueran una sola medición.
 
-El principal hallazgo de calidad de datos es que el informe muestra **21 sesiones en el total**, mientras las filas de campaña suman **26**. Además, GA4 marca `(not set)` con una advertencia de atribución. Por esa diferencia, el gráfico conserva los números tal como aparecen, pero no interpreta las filas como un reparto reconciliado de todas las sesiones.
+En el periodo principal GA4 presenta **37 sesiones**, **482 eventos** y **Q404,91 de ingresos totales**. El evento <code>purchase</code> aparece **10 veces**, asociado con **4 usuarios**. El informe de comercio electrónico muestra **15 artículos comprados** y **Q227,23 de ingresos por artículo**; este importe no coincide con los ingresos totales del evento <code>purchase</code>, por lo que se deja visible como una diferencia pendiente de conciliación.
 
-> **Conclusión para negocio:** la campaña de temporada ya aparece en GA4 con ingresos atribuidos; sin embargo, hay que corregir y volver a comprobar la atribución de sesiones antes de usar el reparto de tráfico como indicador definitivo.
+La propiedad registra los cuatro eventos de comercio electrónico requeridos: <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code> y <code>purchase</code>. También hay tres segmentos de usuarios, cinco segmentos de eventos y dos exploraciones guardadas. Ambas exploraciones muestran datos. La segunda identifica **5 usuarios** que agregaron un producto, **4** que completaron compra y **1 abandono (20 %)** para su periodo propio.
 
----
+### Indicadores destacados
 
-## 2. Fuente y alcance de los datos
-
-| Campo | Valor del informe observado |
-|---|---|
-| Propiedad / flujo | QuetzalMart Web |
-| Informe | Adquisición de tráfico |
-| Dimensión principal | Campaña de la sesión |
-| Periodo | 30 de septiembre de 2026 |
-| Estado indicado por GA4 | Datos prácticamente completos |
-| Moneda | Quetzales (Q) |
-
-Los datos son una **fotografía de un solo día**, no una tendencia mensual. GA4 puede actualizar informes después del momento de consulta. Por eso, las cifras deben presentarse con la fecha del corte y no mezclarse con periodos diferentes.
-
-### Indicadores generales observados
-
-| Indicador | Resultado | Lectura |
+| Indicador | Resultado observado | Alcance |
 |---|---:|---|
-| Sesiones | 21 | Sesiones mostradas en el total del informe. |
-| Sesiones con interacción | 3 | Sesiones que GA4 clasificó como con interacción. |
-| Porcentaje de interacciones | 14,29 % | 3 sesiones con interacción sobre 21 sesiones del total. |
-| Tiempo de interacción medio por sesión | 6 min 13 s | Promedio presentado por GA4 para el periodo. |
-| Eventos por sesión | 11,29 | Promedio presentado por GA4. |
-| Número de eventos | 237 | Eventos contabilizados en el informe. |
-| Eventos clave | 2 | GA4 agrupa aquí los eventos marcados como clave. |
-| Tasa de evento clave de sesión | 9,52 % | Tasa mostrada por GA4; no debe llamarse tasa de compra hasta confirmar el nombre del evento clave. |
-| Ingresos totales | Q144,98 | Ingresos atribuidos por GA4 para el periodo; contrastarlos con las facturas de Odoo. |
+| Sesiones | 37 | Adquisición de tráfico, últimos 28 días |
+| Sesiones con interacción | 17 (45,95 %) | Tasa de interacción mostrada por GA4 |
+| Eventos | 482 | Informe de adquisición y de eventos |
+| Eventos clave | 10 | Total de eventos marcados como clave; no equivale necesariamente a 10 compras |
+| Tasa de evento clave por sesión | 18,92 % | Incluye todos los eventos clave configurados |
+| Ingresos totales | Q404,91 | Métrica de ingresos totales de GA4 |
+| Eventos <code>purchase</code> | 10 | Informe de eventos |
+| Usuarios con <code>purchase</code> | 4 de 7 usuarios activos | **57,14 % calculado**: usuarios con compra ÷ usuarios activos; no es la tasa de conversión por sesión de GA4 |
+| Artículos comprados | 15 | Informe Compras en comercio electrónico |
+| Ingresos por artículo | Q227,23 | Suma del informe de artículos; distinta de ingresos totales |
+
+> **Lectura principal:** existe actividad y hay compras registradas en GA4. La tasa de evento clave no debe presentarse como tasa de compra: para la proporción de compradores se indica expresamente el cálculo por usuario. La exploración de embudo ya permite medir el abandono en su propio periodo.
 
 ---
 
-## 3. Análisis visual de adquisición y rendimiento
+## 2. Adquisición de usuarios y generación de ingresos
 
-### 3.1 Sesiones atribuidas por campaña
+En **Informes → Adquisición → Adquisición de tráfico**, con la dimensión **Grupo de canales principal de la sesión (Grupo de canales predeterminado)**, el total de sesiones se desglosa en Email, Direct y Unassigned. Las filas concilian con el total de 37 sesiones y con Q404,91 de ingresos.
 
-![Sesiones que GA4 muestra por campaña de sesión](graficos/01_sesiones_por_campana.svg)
+![Sesiones por canal principal de la sesión en GA4, del 4 de septiembre al 1 de octubre de 2026](graficos/01_sesiones_por_campana.svg)
 
-Las filas visibles muestran `beneficios_temporada_2026` con 2 sesiones y `(not set)` con 12. Sin embargo, al sumar las ocho filas se obtienen **26**, frente a **21** sesiones en el total. Las proporciones mostradas por fila tampoco representan un reparto que sume 100 %. Por eso, este gráfico sirve para localizar valores y anomalías, no para afirmar la participación exacta de cada fuente sobre un total reconciliado.
+![Ingresos totales de GA4 por canal principal de la sesión en el mismo periodo](graficos/02_ingresos_por_campana.svg)
 
-GA4 presenta una advertencia para `(not set)` indicando que faltan datos de sesión para atribuir correctamente algunas interacciones. El dato debe tratarse como una señal de calidad de instrumentación, no como una campaña real.
-
-### 3.2 Ingresos atribuidos por campaña
-
-![Ingresos totales de GA4 por campaña de sesión](graficos/02_ingresos_por_campana.svg)
-
-La fila `beneficios_temporada_2026` registra **Q106,42**, equivalente al **73,4 %** de los Q144,98 del total. La fila `(not set)` registra **Q38,56** —el **26,6 %** restante— sin un nombre de campaña atribuible. La suma de estas dos filas coincide con el total de ingresos del informe.
-
-Este resultado demuestra atribución de ingresos a la campaña identificada en GA4. El informe observado agrupa el conteo en **Eventos clave**; para afirmar que ese evento fue específicamente `purchase`, se debe abrir el desglose por nombre del evento y mostrarlo junto al informe de compras. Los ingresos de GA4 tampoco equivalen automáticamente a ingresos netos contables: se contrastan con las facturas y los pagos en Odoo.
-
-### 3.3 Actividad medida por campaña
-
-![Eventos registrados por campaña de sesión](graficos/03_eventos_por_campana.svg)
-
-GA4 contabiliza **237 eventos**. De ellos, 131 aparecen en `(not set)` y 46 en `beneficios_temporada_2026`. La suma de los eventos por fila sí coincide con el total. Esto permite ver que una parte importante de la actividad todavía no tiene una campaña atribuida, aunque el informe ya registra actividad e ingresos para la campaña de temporada.
-
----
-
-## 4. Detalle de filas del informe
-
-Los valores siguientes transcriben las filas que se ven en GA4 para el mismo periodo. Las columnas de sesiones se conservan tal como aparecen; debido a la falta de conciliación descrita arriba, no se deben sumar para calcular participación de tráfico.
-
-| Campaña de la sesión | Sesiones mostradas | Sesiones con interacción | Eventos | Eventos clave | Tasa de evento clave de sesión | Ingresos |
+| Canal principal de sesión | Sesiones | Sesiones con interacción | Eventos | Eventos clave | Tasa de evento clave de sesión | Ingresos totales |
 |---|---:|---:|---:|---:|---:|---:|
-| `validacion_ga4_sep2026` | 1 | 1 | 15 | 0 | 0 % | Q0,00 |
-| `ga4_demostracion_v2` | 2 | 0 | 4 | 0 | 0 % | Q0,00 |
-| `ga4_demo_utm_2026` | 1 | 0 | 2 | 0 | 0 % | Q0,00 |
-| `campana_validacion_20260930` | 1 | 0 | 2 | 0 | 0 % | Q0,00 |
-| `beneficios_temporada_2026` | 2 | 1 | 46 | 1 | 50 % | Q106,42 |
-| `(not set)` | 12 | 0 | 131 | 1 | 8,33 % | Q38,56 |
-| `(direct)` | 4 | 1 | 29 | 0 | 0 % | Q0,00 |
-| `(cross-network)` | 3 | 0 | 8 | 0 | 0 % | Q0,00 |
-| **Total mostrado por GA4** | **21** | **3** | **237** | **2** | **9,52 %** | **Q144,98** |
+| Email | 15 | 6 | 210 | 5 | 26,67 % | Q274,22 |
+| Direct | 14 | 10 | 194 | 4 | 14,29 % | Q54,80 |
+| Unassigned | 8 | 1 | 78 | 1 | 12,50 % | Q75,89 |
+| **Total** | **37** | **17** | **482** | **10** | **18,92 %** | **Q404,91** |
 
-**Control de consistencia:** las sesiones de las filas suman 26; el total del informe es 21. Las demás columnas mostradas sí concilian con el total (sesiones con interacción, eventos, eventos clave e ingresos). Este control se incluye deliberadamente para no ocultar la advertencia de atribución.
+**Interpretación.** El canal Email concentra Q274,22 (67,72 % de los ingresos totales mostrados en esta tabla), seguido por Unassigned con Q75,89 y Direct con Q54,80. “Email” es un grupo de canales, no el nombre de una campaña específica; por sí solo no demuestra qué enlace o campaña generó cada compra. Un evento clave puede ser <code>purchase</code> u otro evento marcado como clave, así que su tasa se conserva con el nombre usado por GA4.
 
 ---
 
-## 5. Hallazgos y decisiones de negocio
+## 3. Eventos del comercio electrónico y conversión
 
-### Hallazgo 1: la campaña de temporada genera ingresos medibles
+El informe **Eventos**, con el mismo periodo principal, registra los siguientes eventos. La columna de usuarios corresponde a usuarios que activaron cada evento; el número de eventos puede repetirse para una misma persona.
 
-`beneficios_temporada_2026` aparece en el informe y se asocia con Q106,42, 46 eventos y un evento clave. Su tasa de evento clave de sesión reportada es 50 %. Es una señal positiva para evaluar la campaña, pero el informe por sí solo no identifica en esta tabla el nombre exacto del evento clave ni proporciona costo publicitario.
+![Eventos clave del recorrido de comercio electrónico: cantidad de eventos y usuarios](graficos/03_eventos_por_campana.svg)
 
-**Decisión recomendada:** conservar el nombre UTM de la campaña en los enlaces de correo y publicidad; comparar en GA4 sus sesiones, evento `purchase` e ingresos por periodos equivalentes. No presentar retorno sobre inversión publicitaria (ROAS) sin registrar también el gasto de la campaña.
+| Evento | Número de eventos | Usuarios |
+|---|---:|---:|
+| <code>view_item</code> | 25 | 7 |
+| <code>add_to_cart</code> | 18 | 5 |
+| <code>begin_checkout</code> | 28 | 5 |
+| <code>purchase</code> | 10 | 4 |
 
-### Hallazgo 2: `(not set)` concentra una advertencia relevante
+### Tasa de conversión presentada
 
-GA4 muestra 12 sesiones, 131 eventos, un evento clave y Q38,56 en esa fila, pero advierte que faltan datos de sesión para atribuir correctamente. Esa fila representa el problema más claro para mejorar la lectura de adquisición y la atribución de ingresos.
+Con las métricas visibles del informe de eventos se calcula una tasa de conversión **a nivel de usuarios activos**:
 
-**Decisión recomendada:** revisar la configuración de consentimiento y que los eventos de la tienda se envíen con su contexto de sesión. Después de corregirla, generar nuevas visitas de prueba y volver a comparar el resumen con las filas por campaña. La corrección afecta principalmente datos futuros; los informes anteriores no necesariamente se reconstruyen.
+**4 usuarios con <code>purchase</code> ÷ 7 usuarios activos = 57,14 %.**
 
-### Hallazgo 3: actividad y atribución no son lo mismo
+Este cálculo indica la proporción de usuarios activos que registró al menos un <code>purchase</code> en el periodo. No es la tasa de conversión por sesión ni la tasa de evento clave que muestra Adquisición de tráfico (18,92 %), pues esa tasa incluye todos los eventos clave. Al exponerlo, se debe nombrar el numerador, el denominador y el periodo.
 
-Que GA4 registre eventos no demuestra por sí mismo que la sesión tenga una campaña identificable, ni que cada evento corresponda a una compra terminada. Para evaluar el embudo se debe comprobar cada nombre de evento y su secuencia.
-
-**Decisión recomendada:** validar `view_item`, `add_to_cart`, `begin_checkout` y `purchase` en los informes de eventos y en una exploración de embudo. Registrar como compra completada solo las sesiones que alcancen `purchase`.
-
-### Hallazgo 4: faltan costos para medir rentabilidad de marketing
-
-El informe observado presenta ingresos y adquisición, pero no el gasto de cada campaña. Sin costo no se puede calcular con estos datos el ROAS, el costo por adquisición ni la rentabilidad neta.
-
-**Decisión recomendada:** si se desea evaluar rentabilidad y no solo tráfico/ingresos atribuidos, incorporar el costo de campañas con la función de importación de costos o mantenerlo en un reporte financiero separado.
+Los conteos de eventos no forman por sí solos un embudo secuencial: una persona puede ver o agregar varios artículos y activar varias veces <code>begin_checkout</code>. Para cuantificar conversiones entre etapas o abandonos se necesitan datos de usuarios/sesiones en una exploración de embudo poblada.
 
 ---
 
-## 6. Cómo completar la lectura del comercio electrónico
+## 4. Productos más vendidos
 
-El informe de adquisición usado para estos gráficos no presenta nombres de productos ni el conteo desglosado de cada evento del embudo. Para completar el análisis de comercio electrónico en GA4, revisar estos datos en los informes correspondientes:
+En **Informes → Generar ventas → Compras en comercio electrónico**, GA4 muestra vistas, adiciones al carrito, artículos comprados e ingresos por artículo para el periodo principal.
 
-| Pregunta de negocio | Dato que se debe mostrar en GA4 | Interpretación |
-|---|---|---|
-| ¿Qué productos atraen interés? | Evento `view_item` y reporte por nombre/ID del artículo. | Productos vistos y su proporción frente a los agregados al carrito. |
-| ¿Qué productos se agregan al carrito? | Evento `add_to_cart` y artículos agregados. | Demanda inicial por producto. |
-| ¿Dónde se abandona la compra? | Pasos `add_to_cart` → `begin_checkout` → `purchase` en una exploración de embudo. | Pérdida de usuarios entre pasos; revisar si el embudo está abierto o cerrado según la pregunta. |
-| ¿Qué productos se venden más? | Informe de compras de comercio electrónico, con nombre/ID del artículo, unidades e ingresos del artículo. | Ranking por unidades vendidas e ingresos; no inferirlo solo a partir de sesiones o vistas. |
-| ¿Qué proporción completa la compra? | Usuarios o sesiones que llegan a `purchase` frente al conjunto definido como inicio del embudo. | Tasa de conversión, indicando siempre denominador y periodo. |
+![Artículos comprados e ingresos por producto en GA4](graficos/04_productos_mas_vendidos.svg)
 
-Las tasas de un embudo se deben calcular a partir de usuarios/sesiones consistentes en el mismo periodo; no es correcto dividir cantidades de eventos de distinto tipo y llamarlas automáticamente tasa de conversión. Una exploración de carrito abandonado debe incluir sesiones con `add_to_cart` que no llegaron a `purchase` dentro del criterio temporal del informe.
+| Producto | Vistos | Añadidos al carrito | Comprados | Ingresos del artículo |
+|---|---:|---:|---:|---:|
+| Arroz premium 1 kg | 22 | 16 | **11** | **Q149,16** |
+| Azúcar blanca 1 kg | 2 | 2 | **3** | **Q61,11** |
+| Frijol negro 1 kg | 0 | 0 | **1** | **Q16,96** |
+| Atún en agua 140 g | 1 | 0 | 0 | Q0,00 |
+| **Total** | **25** | **18** | **15** | **Q227,23** |
 
----
-
-## 7. Uso de segmentos y exploraciones para decisiones
-
-Los segmentos permiten comparar grupos de usuarios o sesiones. Las exploraciones convierten esa comparación en preguntas operativas. Para la exposición se recomienda mostrar dos análisis:
-
-1. **Exploración de embudo de compra:** aplicar los segmentos de usuarios y comparar visualizaciones de producto, carrito, inicio de pago y compra. Mostrar usuarios/sesiones por paso y abandono entre pasos.
-2. **Exploración de campaña y carrito:** comparar las sesiones con campaña `beneficios_temporada_2026` frente a `(not set)` y tráfico directo; incluir carrito, `purchase` e ingresos, con el mismo intervalo de fechas.
-
-Los segmentos y exploraciones deben estar seleccionados en el informe y tener datos para el periodo presentado. Que estén guardados en GA4 no significa que cada tabla tenga datos. Si una exploración aparece vacía, ampliar el periodo a días con actividad y revisar que los filtros no excluyan las sesiones de prueba.
+**Hallazgo.** El arroz premium lidera por unidades e ingresos del artículo: 11 unidades y Q149,16. El total de ingresos por artículo (Q227,23) difiere en **Q177,68** de los Q404,91 de ingresos totales mostrados por GA4 para el mismo periodo. Se muestran ambos valores sin mezclarlos; antes de usarlos como una conciliación contable habría que revisar los parámetros de los eventos de compra y la composición de cada métrica en GA4.
 
 ---
 
-## 8. Guía breve para presentar los resultados
+## 5. Campaña identificada: lectura independiente del corte de 28 días
 
-1. Abrir GA4 y seleccionar la propiedad **QuetzalMart Web**.
-2. Entrar a **Informes → Adquisición → Adquisición de tráfico**.
-3. Elegir el periodo del corte que se presenta y la dimensión **Campaña de la sesión**.
-4. Mostrar las métricas de sesiones, sesiones con interacción, eventos clave e ingresos totales.
-5. Buscar `beneficios_temporada_2026` y señalar los Q106,42 atribuidos; luego abrir el desglose del evento clave para demostrar si corresponde a `purchase`.
-6. Mostrar la advertencia de `(not set)` y explicar que las filas por campaña no concilian con el total de sesiones en este corte.
-7. Abrir los informes de eventos y de compras de comercio electrónico para demostrar nombres de productos, artículos vendidos y los eventos del embudo.
-8. Abrir las dos exploraciones con el mismo periodo y los segmentos seleccionados.
-9. Comparar la compra web y su factura con el pedido y la factura de Odoo; GA4 mide comportamiento, mientras Odoo conserva los registros comerciales.
+El informe **Adquisición de tráfico → Campaña de la sesión**, filtrado para el **30 de septiembre de 2026**, muestra la campaña <code>beneficios_temporada_2026</code>. Este es un corte de un solo día, separado de los indicadores de los últimos 28 días.
 
-### Nota de interpretación
+![Ingresos por campaña de sesión en el corte del 30 de septiembre de 2026](graficos/05_campana_30sep.svg)
 
-El porcentaje de interacciones, la tasa de evento clave de sesión y la tasa de conversión de compra son métricas distintas. En la presentación se debe conservar el nombre de cada métrica de GA4 y especificar periodo, dimensión y denominador. Los gráficos adjuntos reproducen únicamente el informe de adquisición del 30 de septiembre de 2026.
+| Fila de campaña del 30 de septiembre | Sesiones mostradas | Eventos clave | Ingresos |
+|---|---:|---:|---:|
+| <code>beneficios_temporada_2026</code> | 2 | 1 | Q106,42 |
+| <code>(not set)</code> | 12 | 1 | Q38,56 |
+| **Total del informe** | **21** | **2** | **Q144,98** |
+
+El corte muestra ingreso asociado a una campaña identificada. Sin embargo, la tabla vista agrupa el conteo en **Eventos clave** y no especifica en esa fila cuál fue el nombre del evento; por ello, no se afirma que el evento clave atribuido a esta campaña haya sido específicamente <code>purchase</code> sin abrir su desglose por nombre.
+
+### Control de calidad de atribución
+
+En el mismo informe diario, las ocho filas visibles suman **26 sesiones**, aunque el total indica **21**. GA4 también muestra una advertencia relacionada con la atribución <code>(not set)</code>. Por tanto, la campaña y sus ingresos se reportan como valores visibles de ese corte, pero las filas de sesiones no se utilizan como un reparto reconciliado. Esta advertencia no debe ocultarse ni extrapolarse a todos los periodos.
 
 ---
 
-## Anexo — Archivos de gráficos
+## 6. Segmentos, audiencias y exploraciones
 
-El documento utiliza tres gráficos SVG guardados en `manual_3/graficos/`. Para conservarlos al mover o convertir el manual, mantener la carpeta `graficos` junto al archivo Markdown. Los gráficos se pueden ampliar sin perder nitidez y usan los valores visibles en GA4 para el corte indicado.
+### Segmentos de usuarios
 
+La exploración guardada **Exploracion 1 - Segmentos de usuarios**, para el periodo **27 de septiembre–2 de octubre**, compara tres segmentos y sí muestra usuarios activos:
+
+| Segmento de usuarios | Usuarios activos |
+|---|---:|
+| Usuarios con visualizacion de producto | 7 |
+| Usuarios con carrito | 5 |
+| Usuarios compradores | 4 |
+
+La tabla de la exploración también permite ver el dispositivo y la ciudad registrados para esos segmentos. Las cifras son pertenencia a cada segmento; no deben sumarse entre sí como usuarios únicos de toda la tienda.
+
+### Segmentos de eventos
+
+En la propiedad están disponibles cinco segmentos de eventos relacionados con el recorrido:
+
+1. Evento <code>view_item</code>
+2. Evento <code>add_to_cart</code>
+3. Evento <code>begin_checkout</code>
+4. Evento <code>purchase</code>
+5. Evento <code>session_start</code>
+
+### Audiencias
+
+La configuración del proyecto incluye, entre otras, estas tres audiencias:
+
+| Audiencia | Tipo / propósito |
+|---|---|
+| GA4 sugerida - Vistas de producto | Audiencia sugerida de usuarios que vieron productos |
+| GA4 sugerida - Checkout sin compra | Audiencia sugerida para seguimiento de usuarios que iniciaron checkout |
+| GA4 personalizada - Visitantes sin compra | Audiencia personalizada para visitantes que no registraron compra |
+
+El informe de una audiencia y la exploración de un segmento no son el mismo elemento: una audiencia debe mostrarse desde la sección **Audiencias** y sus datos de pertenencia pueden tardar en acumularse.
+
+---
+
+## 7. Embudo y abandono del carrito: estado actual
+
+La segunda exploración guardada se titula **Exploración 2 - Eventos y abandono de carrito**. Su paso configurado es **Agrega producto al carrito → Compra completada**, en modo de embudo estándar, para el periodo **27 de septiembre–2 de octubre de 2026**.
+
+La tabla de resultados verificada el **2 de octubre** muestra **5 usuarios** en el primer paso, **4 (80 %)** en compra completada y **1 abandono (20 %)**. Es una medición secuencial del embudo, no una resta de cantidades generales de eventos. Estas cifras pertenecen solo al periodo de la exploración y pueden actualizarse cuando GA4 procese sesiones nuevas.
+
+---
+
+## 8. Lectura ejecutiva y acciones recomendadas
+
+1. **Adquisición:** Email presenta el mayor ingreso observado en el periodo principal (Q274,22); distinguir el canal Email de la campaña etiquetada.
+2. **Productos:** el arroz premium es el producto con más unidades compradas (11) y más ingresos por artículo (Q149,16).
+3. **Conversión:** la tasa calculada de compradores sobre usuarios activos es 57,14 %; nombrarla como métrica por usuario, no como tasa por sesión.
+4. **Atribución:** la campaña <code>beneficios_temporada_2026</code> registra Q106,42 en el corte diario del 30 de septiembre, pero el conteo mostrado es de eventos clave y la tabla tiene una diferencia en el total de sesiones.
+5. **Calidad de ingresos:** reconciliar los Q404,91 de ingresos totales con los Q227,23 de ingresos por artículo antes de interpretar la diferencia como venta neta o margen.
+6. **Abandono:** la exploración muestra 1 de 5 usuarios que agregó al carrito sin completar la compra (20 %) en el periodo 27 sept–2 oct.
+
+---
+
+## 9. Guía de presentación
+
+1. En GA4, seleccionar la propiedad **QuetzalMart Web 2026**.
+2. En **Informes → Adquisición → Adquisición de tráfico**, elegir **4 sept–1 oct 2026** y mostrar sesiones, ingresos y la dimensión de grupo de canales.
+3. En **Informes → Ver la interacción y la retención de usuarios → Eventos**, mostrar <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code> y <code>purchase</code>.
+4. En **Informes → Generar ventas → Compras en comercio electrónico**, mostrar el ranking de artículos y las métricas de vistos, añadidos y comprados.
+5. En **Explorar**, abrir la primera exploración y señalar la comparación 7 / 5 / 4; después abrir la segunda y mostrar los 5 usuarios que agregaron al carrito, 4 que compraron y 1 abandono (20 %).
+6. Para la campaña, seleccionar el corte **30 sept 2026**, buscar <code>beneficios_temporada_2026</code> y aclarar la advertencia de <code>(not set)</code> y la diferencia en la suma de sesiones.
+7. Si se presenta la tasa de 57,14 %, explicar su fórmula: 4 usuarios con <code>purchase</code> ÷ 7 usuarios activos en el periodo principal.
+8. Contrastar GA4 con Odoo para comprobar pedidos y facturas; GA4 mide actividad web y atribución, no sustituye el registro comercial del ERP.
+
+### Definiciones
+
+- **Ingresos totales:** métrica agregada de ingresos mostrada por GA4.
+- **Ingresos del artículo:** ingresos atribuidos a los productos individuales en el informe de comercio electrónico.
+- **Evento clave:** evento marcado como importante en GA4; la tasa puede incluir varios nombres de evento.
+- **Usuarios activos:** usuarios que GA4 considera activos durante el periodo seleccionado.
+- **Tasa calculada de compradores:** usuarios con evento <code>purchase</code> ÷ usuarios activos; se identifica como cálculo propio a nivel de usuario.
+- **Abandono de carrito:** usuario/sesión que activa <code>add_to_cart</code> y no completa <code>purchase</code> según la secuencia definida en el embudo. No puede calcularse con los totales generales de eventos.
+
+---
+
+## Anexo — gráficos
+
+Los gráficos vectoriales están en manual_3/graficos/. Los gráficos 1–4 reflejan los últimos 28 días disponibles (4 de septiembre–1 de octubre de 2026); el gráfico 5 corresponde únicamente al 30 de septiembre de 2026. Mantener esta carpeta junto al Markdown al convertirlo a PDF.
