@@ -156,6 +156,53 @@ JOIN product_template pt ON pt.id = pp.product_tmpl_id
 WHERE pp.default_code LIKE 'QM-%'
 ORDER BY pp.default_code;
 
+-- 5.2. Materiales operativos internos agregados para las sucursales.
+-- Deben ser 60, tener imagen y no estar publicados ni habilitados para la venta.
+SELECT COUNT(*) AS materiales_operativos,
+       COUNT(*) FILTER (WHERE NOT pt.sale_ok) AS no_vendibles,
+       COUNT(*) FILTER (WHERE NOT pt.is_published) AS no_publicados,
+       COUNT(*) FILTER (WHERE EXISTS (
+           SELECT 1 FROM ir_attachment ia
+           WHERE ia.res_model = 'product.template'
+             AND ia.res_id = pt.id
+             AND ia.res_field = 'image_1920'
+       )) AS con_imagen
+FROM product_product pp
+JOIN product_template pt ON pt.id = pp.product_tmpl_id
+WHERE pp.default_code LIKE 'QMI-%';
+
+-- 5.3. Existencias de los materiales operativos en cada sucursal.
+SELECT sw.name AS sucursal,
+       COUNT(DISTINCT pp.id) AS materiales_con_existencia,
+       ROUND(COALESCE(SUM(sq.quantity), 0)::numeric, 2) AS unidades_internas
+FROM stock_warehouse sw
+JOIN stock_quant sq ON sq.location_id = sw.lot_stock_id
+JOIN product_product pp ON pp.id = sq.product_id
+WHERE sw.code IN ('GT', 'MX', 'SV')
+  AND pp.default_code LIKE 'QMI-%'
+  AND sq.quantity > 0
+GROUP BY sw.id, sw.name
+ORDER BY sw.code;
+
+-- 5.4. Listado de artículos internos, categoría, costo, publicación e imagen.
+SELECT pp.default_code AS codigo,
+       COALESCE(pt.name ->> 'es_GT', pt.name ->> 'en_US', '') AS material,
+       pc.name AS categoria,
+       pp.standard_price AS costo,
+       pt.sale_ok AS vendible,
+       pt.is_published AS publicado,
+       EXISTS (
+           SELECT 1 FROM ir_attachment ia
+           WHERE ia.res_model = 'product.template'
+             AND ia.res_id = pt.id
+             AND ia.res_field = 'image_1920'
+       ) AS tiene_imagen
+FROM product_product pp
+JOIN product_template pt ON pt.id = pp.product_tmpl_id
+LEFT JOIN product_category pc ON pc.id = pt.categ_id
+WHERE pp.default_code LIKE 'QMI-%'
+ORDER BY pp.default_code;
+
 -- 6. Enunciado: al menos 50 facturas.
 SELECT COUNT(*) AS facturas_publicadas
 FROM account_move

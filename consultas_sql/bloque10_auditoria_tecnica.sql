@@ -37,7 +37,36 @@ UNION ALL
 SELECT 'proveedores comerciales', COUNT(*) FROM res_partner WHERE active AND supplier_rank > 0
 UNION ALL
 SELECT 'productos QM', COUNT(*) FROM product_product WHERE default_code LIKE 'QM-%'
+UNION ALL
+SELECT 'materiales operativos internos QMI', COUNT(*)
+FROM product_product WHERE default_code LIKE 'QMI-%'
 ORDER BY elemento;
+
+-- Materiales internos: 60 registros, con imagen, no publicables y con existencias por sucursal.
+SELECT COUNT(*) AS materiales,
+       COUNT(*) FILTER (WHERE NOT pt.sale_ok) AS no_vendibles,
+       COUNT(*) FILTER (WHERE NOT pt.is_published) AS no_publicados,
+       COUNT(*) FILTER (WHERE EXISTS (
+           SELECT 1 FROM ir_attachment ia
+           WHERE ia.res_model = 'product.template'
+             AND ia.res_id = pt.id
+             AND ia.res_field = 'image_1920'
+       )) AS con_imagen
+FROM product_product pp
+JOIN product_template pt ON pt.id = pp.product_tmpl_id
+WHERE pp.default_code LIKE 'QMI-%';
+
+SELECT sw.name AS sucursal,
+       COUNT(DISTINCT pp.id) AS materiales_con_existencia,
+       ROUND(COALESCE(SUM(sq.quantity), 0)::numeric, 2) AS unidades_internas
+FROM stock_warehouse sw
+JOIN stock_quant sq ON sq.location_id = sw.lot_stock_id
+JOIN product_product pp ON pp.id = sq.product_id
+WHERE sw.code IN ('GT', 'MX', 'SV')
+  AND pp.default_code LIKE 'QMI-%'
+  AND sq.quantity > 0
+GROUP BY sw.id, sw.name
+ORDER BY sw.code;
 
 -- 4. Existencias agregadas por almacén.
 SELECT sw.name AS almacen,
