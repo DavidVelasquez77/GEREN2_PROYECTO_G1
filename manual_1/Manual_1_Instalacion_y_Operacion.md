@@ -3,8 +3,8 @@
 ## Manual 1 — Instalación y operación del sistema
 
 **Proyecto:** GEREN2 · Segundo semestre 2026  
-**Versión del manual:** 1.0  
-**Fecha:** 30 de septiembre de 2026  
+**Versión del manual:** 1.1<br>
+**Fecha:** 7 de octubre de 2026<br>
 **Plataforma:** Google Cloud Platform · Ubuntu 24.04 · Docker · Odoo Community 18 · PostgreSQL 16 · UiPath
 
 > Este documento describe el entorno y los procedimientos del proyecto académico QuetzalMart. Los clientes, proveedores, empleados, pedidos y documentos de demostración son datos simulados. No se deben copiar contraseñas, llaves ni archivos de `.secrets` a este manual.
@@ -15,7 +15,8 @@
 2. [Funcionamiento de los módulos](#2-funcionamiento-de-los-módulos)
 3. [Carga de información y operación en Odoo](#3-carga-de-información-y-operación-en-odoo)
 4. [RPA de UiPath: flujo, evidencia y ventajas](#4-rpa-de-uipath-flujo-evidencia-y-ventajas)
-5. [Lista de evidencia para la entrega](#5-lista-de-evidencia-para-la-entrega)
+5. [Comprobación de resultados](#5-comprobación-de-resultados)
+6. [Anexo B: carga por módulo](#anexo-b---carga-de-información-por-módulo)
 
 ---
 
@@ -466,7 +467,7 @@ Las siguientes capturas muestran el diseño del flujo de extremo a extremo: sele
 - Las columnas de relaciones, por ejemplo compañía o etiquetas, deben coincidir con valores reconocidos por Odoo. Si una referencia no existe, resolverla antes de importar.
 - Si **Probar** devuelve un error, no confirmar la importación: corregir el Excel o su mapeo y probar de nuevo.
 - Al trabajar con inventario, escribir el motivo sustituyendo el texto por defecto y confirmar con **Actualizar cantidades**. No basta con llegar a la pantalla ni pulsar **Aplicar todo** si aparece el diálogo de motivo.
-- El flujo está ligado a selectores de Chrome; mantener Chrome como navegador de ejecución y no cambiarlo a Brave durante la presentación.
+- El flujo está ligado a selectores de Chrome; mantener Chrome como navegador de ejecución y no cambiarlo a Brave durante la ejecución.
 
 ## 4.4 Ventajas de implementar el RPA
 
@@ -480,34 +481,20 @@ Las siguientes capturas muestran el diseño del flujo de extremo a extremo: sele
 
 ## 4.5 Resultado de la prueba del proyecto
 
-El equipo reportó la ejecución final del RPA con la carpeta exacta `datos\prueba_rpa\lote_auxiliar` y comprobó en Odoo los registros de prueba de clientes `PRUEBA SS 1`, `PRUEBA SS 2`, `PRUEBA SS 3` y `PRUEBA SS 4`. Para presentar esta prueba, conviene abrir la carpeta, mostrar el log de salida de UiPath y buscar esos nombres en Odoo. Las capturas actuales de este manual ilustran el flujo y las pantallas; no sustituyen una captura de la corrida final con el resultado visible.
+El equipo reportó la ejecución final del RPA con la carpeta exacta `datos\prueba_rpa\lote_auxiliar` y comprobó en Odoo los registros de prueba de clientes `PRUEBA SS 1`, `PRUEBA SS 2`, `PRUEBA SS 3` y `PRUEBA SS 4`. Para comprobar una ejecución, revisar la salida de UiPath, buscar los nombres cargados en Contactos y las referencias en Productos, y contrastar las fichas con el Excel. Si el lote contiene existencias, revisar y aplicar solo sus ajustes con el motivo correspondiente.
 
 ---
 
-# 5. Lista de evidencia para la entrega
+# 5. Comprobación de resultados
 
-Las capturas incluidas son imágenes reales de las pantallas del proyecto, no ilustraciones generadas. Antes de convertir este Markdown a PDF, comprobar que las imágenes se vean con suficiente resolución y añadir, si la entrega lo requiere, las evidencias adicionales recomendadas.
+1. Confirmar que Odoo y el sitio web respondan por HTTPS.
+2. Comparar los registros importados con el archivo de entrada y revisar nombres, referencias y relaciones.
+3. Comprobar el estado de las órdenes; una cotización no equivale a una orden confirmada.
+4. Revisar recepciones, entregas, cantidades y ajustes de inventario del lote.
+5. Comprobar facturas publicadas, PDF y clasificación en DMS.
+6. Consultar el registro de ejecución de UiPath y comprobar los clientes y productos cargados.
 
-| Requisito del manual | Evidencia incluida o acción final |
-|---|---|
-| Instalación del sistema | Procedimiento reproducible y arquitectura descritos; adjuntar captura reciente de VM saludable y del login HTTPS si el docente pide evidencia visual de instalación. |
-| Tienda/productos | Captura real del catálogo de productos. |
-| Carga masiva de clientes/productos | Secuencia ampliada del flujo UiPath incluida; los contactos `PRUEBA SS 1–4` aparecen en Odoo. La Figura 1 documenta la pantalla de importación de productos. |
-| Órdenes de compra | Capturas reales de listado, orden confirmada y factura de proveedor. |
-| Ventas | Lista de órdenes y detalle de la venta web `S00178` incluidos. |
-| CRM/clientes | Directorio, ficha de contacto y los cuatro contactos `PRUEBA SS 1–4` incluidos. |
-| Empleados | Lista de 35 empleados, cinco departamentos y seis puestos incluidos. |
-| Facturas | Factura de proveedor, listado de 163 facturas de cliente y detalle de `INV/2026/00163` incluidos; los 50 PDFs están en `outputs/facturas_pdf/`. |
-| Archivo documental | Captura de OCA DMS incluida con 75 archivos y conteos por categoría: 5 contratos de empleado, 5 de outsourcing, 60 facturas de cliente y 5 de proveedor. |
-| RPA | Capturas ampliadas del diseñador y de los pasos de importación incluidas; los contactos resultantes se muestran en Odoo. La salida/log de UiPath puede añadirse si se desea documentar también la ejecución final. |
-| Ajuste de inventario | Captura real de la lista y del diálogo con motivo y **Actualizar cantidades**. |
-
-## Capturas adicionales recomendadas
-
-1. Google Cloud Console: VM `quetzalmart-odoo` en ejecución y configuración sin el puerto 5432 público.
-2. UiPath: salida de la corrida para `datos\prueba_rpa\lote_auxiliar`, si se desea mostrar el log además del flujo y los registros ya comprobados en Odoo.
-
-> Antes de compartir el PDF, ocultar cualquier dirección de correo personal, identificador sensible, token, contraseña o dato de acceso que accidentalmente aparezca en las capturas. No incluir `.secrets/`, archivos `.env` ni claves de acceso.
+El Anexo B muestra el acceso y la validación de archivos por módulo. **Probar** comprueba el archivo; **Importar** guarda el lote. Los ejemplos de validación no acreditan por sí solos una importación guardada.
 
 ---
 
@@ -524,3 +511,368 @@ Las capturas incluidas son imágenes reales de las pantallas del proyecto, no il
 - PDFs de factura: `outputs/facturas_pdf/`.
 - Evidencia digital DMS: `outputs/dms_verified/`.
 - Capturas de este manual: `capturas/manual_1/`.
+
+
+# Anexo B - Carga de información por módulo
+
+Las capturas del 7 de octubre de 2026 muestran acceso, mapeo y validación de archivos de dos registros. No representan una importación guardada. Cargar primero las relaciones maestras; conservar identificadores externos estables al actualizar.
+
+## B01 - Departamentos
+
+1. Abrir **Empleados > Departamentos**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Crear los departamentos antes de asociarlos a empleados. Ejemplo: MANUAL Departamento 01.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Departamentos](capturas/2026-10-07/departamentos_01_acceso.jpg)
+
+*Figura B01.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `Name` | Nombre del departamento |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar el nombre cargado en Departamentos; abrirlo y comprobar su denominación y compañía.
+
+![Validación de Departamentos](capturas/2026-10-07/departamentos_02_validacion.jpg)
+
+*Figura B01.2. Mapeo y validación sin guardar el lote.*
+
+## B02 - Puestos de trabajo
+
+1. Abrir **Empleados > Configuración > Puestos de trabajo**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Preparar un registro por puesto. Si se asigna Departamento, utilizar un departamento existente.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Puestos de trabajo](capturas/2026-10-07/cargos_01_acceso.jpg)
+
+*Figura B02.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `Name` | Puesto de trabajo |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL Puesto 01 y comprobar nombre y departamento. La carga del puesto no crea empleados.
+
+![Validación de Puestos de trabajo](capturas/2026-10-07/cargos_02_validacion.jpg)
+
+*Figura B02.2. Mapeo y validación sin guardar el lote.*
+
+## B03 - Empleados
+
+1. Abrir **Empleados > Empleados**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. El ejemplo valida dos fichas mínimas. Para la carga de personal, añadir correo laboral, puesto y departamento; resolver primero las relaciones.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Empleados](capturas/2026-10-07/empleados_01_acceso.jpg)
+
+*Figura B03.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `External ID` | ID externo |
+| `Name` | Nombre del empleado |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL Empleado 01 y comprobar la ficha. Verificar puesto y departamento si se incluyeron en el archivo.
+
+![Validación de Empleados](capturas/2026-10-07/empleados_02_validacion.jpg)
+
+*Figura B03.2. Mapeo y validación sin guardar el lote.*
+
+## B04 - Clientes y proveedores
+
+1. Abrir **Contactos**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Clientes y proveedores comparten el directorio de Contactos. Añadir correo, teléfono, país e identificación fiscal cuando correspondan; usar etiquetas existentes para clasificar.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Clientes y proveedores](capturas/2026-10-07/contactos_01_acceso.jpg)
+
+*Figura B04.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `Name` | Nombre |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL Contacto 01 y abrir la ficha. Comprobar nombre, datos incluidos y clasificación; no confundir un contacto con una oportunidad de CRM.
+
+![Validación de Clientes y proveedores](capturas/2026-10-07/contactos_02_validacion.jpg)
+
+*Figura B04.2. Mapeo y validación sin guardar el lote.*
+
+## B05 - Oportunidades de CRM
+
+1. Abrir **CRM > Mi flujo**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Preparar una oportunidad por fila. Para asociar Cliente, Etapa o Comercial, usar contactos, etapas y usuarios existentes.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Oportunidades de CRM](capturas/2026-10-07/crm_01_acceso.jpg)
+
+*Figura B05.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `Name` | Oportunidad |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL Oportunidad 01 en CRM. Abrirla y comprobar cliente, etapa y responsable cuando se hayan importado.
+
+![Validación de Oportunidades de CRM](capturas/2026-10-07/crm_02_validacion.jpg)
+
+*Figura B05.2. Mapeo y validación sin guardar el lote.*
+
+## B06 - Productos
+
+1. Abrir **Inventario > Productos > Productos**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. El ejemplo usa consu (Bienes), seguimiento True, referencia MANUAL-PRD-01, precio 15 y costo 8. Mantener códigos de barras como texto para conservar los ceros iniciales.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Productos](capturas/2026-10-07/productos_01_acceso.jpg)
+
+*Figura B06.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `Name` | Nombre |
+| `Referencia interna` | Referencia interna |
+| `Tipo de producto` | Tipo de producto |
+| `Rastrear inventario` | Rastrear inventario |
+| `Código de barras` | Código de barras |
+| `Precio de venta` | Precio de venta |
+| `Coste` | Costo |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL-PRD-01; comprobar tipo, seguimiento, referencia, precio, costo y código de barras. Importar productos no equivale a cargar existencias físicas.
+
+![Validación de Productos](capturas/2026-10-07/productos_02_validacion.jpg)
+
+*Figura B06.2. Mapeo y validación sin guardar el lote.*
+
+## B07 - Inventario físico
+
+1. Abrir **Inventario > Operaciones > Inventario físico**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Los productos y ubicaciones deben existir. El ejemplo usa AUDIT-PRD-20261006-1, GT/Stock y cantidad contada 4. La cantidad es absoluta. Para actualizar líneas existentes, exportar y reutilizar sus ID externos.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Inventario físico](capturas/2026-10-07/inventario_01_acceso.jpg)
+
+*Figura B07.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `Product` | Producto |
+| `Ubicación` | Ubicación |
+| `Cantidades contadas` | Cantidades contadas |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Revisar solo las líneas del lote, cantidades contadas y diferencia. Aplicar el ajuste seleccionado, reemplazar el motivo predeterminado y confirmar Actualizar cantidades. Comprobar la existencia final en GT/Stock.
+
+![Validación de Inventario físico](capturas/2026-10-07/inventario_02_validacion.jpg)
+
+*Figura B07.2. Mapeo y validación sin guardar el lote.*
+
+## B08 - Cotizaciones de venta
+
+1. Abrir **Ventas > Órdenes > Cotizaciones**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Cargar primero clientes y productos. Ejemplo: Cliente QuetzalMart 01, producto QM-001, cantidad 2 y precio 13.56. Cada fila del ejemplo contiene una cotización con una línea.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Cotizaciones de venta](capturas/2026-10-07/ventas_01_acceso.jpg)
+
+*Figura B08.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `Name` | Referencia de la orden |
+| `Cliente` | Cliente |
+| `order_line/product_id` | Líneas de la orden / Producto |
+| `order_line/product_uom_qty` | Líneas de la orden / Cantidad |
+| `order_line/price_unit` | Líneas de la orden / Precio unitario |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL-VENTAS-01; comprobar cliente, líneas e impuestos. La importación crea cotizaciones: confirmar la aceptada para convertirla en pedido y continuar con entrega y facturación.
+
+![Validación de Cotizaciones de venta](capturas/2026-10-07/ventas_02_validacion.jpg)
+
+*Figura B08.2. Mapeo y validación sin guardar el lote.*
+
+## B09 - Solicitudes de compra
+
+1. Abrir **Compras > Órdenes > Solicitudes de cotización**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Cargar primero proveedores y productos. Ejemplo: Proveedor Regional 01, QM-001, cantidad 2 y precio 13.56. Cada fila del ejemplo contiene una solicitud con una línea.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Solicitudes de compra](capturas/2026-10-07/compras_01_acceso.jpg)
+
+*Figura B09.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `Name` | Referencia de la orden |
+| `Proveedor` | Proveedor |
+| `order_line/product_id` | Líneas de la orden / Producto |
+| `order_line/product_qty` | Líneas de la orden / Cantidad |
+| `order_line/price_unit` | Líneas de la orden / Precio unitario |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL-COMPRAS-01; revisar proveedor, líneas e impuestos. Confirmar la solicitud aprobada para obtener la orden; validar después su recepción y generar la factura vinculada.
+
+![Validación de Solicitudes de compra](capturas/2026-10-07/compras_02_validacion.jpg)
+
+*Figura B09.2. Mapeo y validación sin guardar el lote.*
+
+## B10 - Facturas de cliente
+
+1. Abrir **Facturación > Clientes > Facturas**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Importar desde la vista Facturas para usar el tipo de cliente. Ejemplo: Cliente QuetzalMart 01, fecha 2026-10-07, QM-001, cantidad 2 y precio 13.56. Revisar diario, cuentas e impuestos antes de publicar.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Facturas de cliente](capturas/2026-10-07/facturas_cliente_01_acceso.jpg)
+
+*Figura B10.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `partner_id` | Contacto |
+| `invoice_date` | Fecha de la factura |
+| `invoice_line_ids/product_id` | Líneas de factura / Producto |
+| `invoice_line_ids/name` | Líneas de factura / Etiqueta |
+| `invoice_line_ids/quantity` | Líneas de factura / Cantidad |
+| `invoice_line_ids/price_unit` | Líneas de factura / Precio unitario |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Filtrar por cliente y fecha, abrir el borrador y comprobar líneas y total. Publicar únicamente después de revisar; verificar el número contable y el PDF. Para facturar pedidos existentes, generar la factura desde el pedido y evitar duplicarla por importación.
+
+![Validación de Facturas de cliente](capturas/2026-10-07/facturas_cliente_02_validacion.jpg)
+
+*Figura B10.2. Mapeo y validación sin guardar el lote.*
+
+## B11 - Facturas de proveedor
+
+1. Abrir **Facturación > Proveedores > Facturas de proveedor**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Importar desde Facturas de proveedor para usar el tipo correcto. Ejemplo: Proveedor Regional 01, fecha 2026-10-07 y producto QM-001. Añadir la referencia de proveedor del documento real cuando corresponda.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Facturas de proveedor](capturas/2026-10-07/facturas_proveedor_01_acceso.jpg)
+
+*Figura B11.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `partner_id` | Contacto |
+| `invoice_date` | Fecha de la factura |
+| `invoice_line_ids/product_id` | Líneas de factura / Producto |
+| `invoice_line_ids/name` | Líneas de factura / Etiqueta |
+| `invoice_line_ids/quantity` | Líneas de factura / Cantidad |
+| `invoice_line_ids/price_unit` | Líneas de factura / Precio unitario |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar por proveedor y fecha; revisar borrador, referencia, diario, cuentas, impuestos y total antes de publicar. Para compras existentes, usar Crear factura desde la orden para conservar el vínculo y evitar duplicados.
+
+![Validación de Facturas de proveedor](capturas/2026-10-07/facturas_proveedor_02_validacion.jpg)
+
+*Figura B11.2. Mapeo y validación sin guardar el lote.*
+
+## B12 - Contratos de empleados
+
+1. Abrir **Empleados > Empleados > Contratos**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Los empleados deben existir. El ejemplo valida contratos en estado Nuevo asociados a Ana López, con fecha 2026-10-07 y salario 4500. Revisar vigencia, horario y compañía antes de activar un contrato.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Contratos de empleados](capturas/2026-10-07/contratos_01_acceso.jpg)
+
+*Figura B12.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `name` | Referencia del contrato |
+| `employee_id` | Empleado |
+| `date_start` | Fecha de inicio |
+| `wage` | Salario |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL-CONTRATO-01; comprobar empleado, fecha, salario y estado. Revisar que no se solape con otro contrato activo. La ficha interna no sustituye al PDF contractual firmado; los documentos del proyecto son simulados.
+
+![Validación de Contratos de empleados](capturas/2026-10-07/contratos_02_validacion.jpg)
+
+*Figura B12.2. Mapeo y validación sin guardar el lote.*
+
+## B13 - Destinatarios de Marketing
+
+1. Abrir **Marketing por correo > Listas de correo > Contactos de la lista de correo**, el menú de engranaje y **Importar registros**.
+2. Preparar CSV UTF-8 o Excel con encabezados e ID externo estable. Preparar una fila por destinatario y revisar duplicados. El ejemplo usa manual01@example.invalid, una dirección reservada para documentación; no usarla para enviar campañas.
+3. Pulsar **Subir archivo de datos** y utilizar la primera fila como encabezado.
+
+![Acceso a Destinatarios de Marketing](capturas/2026-10-07/marketing_01_acceso.jpg)
+
+*Figura B13.1. Acceso real a la importación.*
+
+| Columna | Campo de Odoo |
+|---|---|
+| `ID externo` | ID externo |
+| `name` | Nombre |
+| `email` | Correo electrónico |
+
+4. Revisar el mapeo de cada columna y pulsar **Probar**. Corregir errores y repetir hasta obtener **Todo parece correcto.**
+5. Con el lote definitivo validado, pulsar **Importar** y esperar la finalización.
+6. Buscar MANUAL Destinatario 01; comprobar el correo y asociar la lista de correo correspondiente. Revisar consentimiento y exclusiones antes de seleccionar destinatarios. Importar contactos no envía una campaña.
+
+![Validación de Destinatarios de Marketing](capturas/2026-10-07/marketing_02_validacion.jpg)
+
+*Figura B13.2. Mapeo y validación sin guardar el lote.*
+
+## B14 - Documentos DMS
+
+1. Preparar los PDF por grupo y usar nombres identificables, por ejemplo `INV_2026_00154.pdf`.
+2. Abrir **Documentos > Archivos** y pulsar **Subir**. Esta acción carga archivos binarios, no registros CSV.
+3. Seleccionar los archivos del lote, revisar la subida y clasificar cada documento.
+
+![Acceso a Documentos DMS](capturas/2026-10-07/dms_01_acceso.jpg)
+
+*Figura B14.1. Vista Archivos y acción Subir. No se cargaron documentos para esta captura.*
+
+4. Consultar **Documentos > Carpetas > Documentos QuetzalMart**. Los destinos son Contratos de empleados, Contratos de outsourcing, Facturas PDF y Facturas de proveedores.
+5. Buscar los nombres del lote, comprobar carpeta, categoría y etiquetas y abrir una muestra. Comparar el número de archivos esperado con el incorporado.
+
+![Carpetas DMS](capturas/2026-10-07/dms_02_carpetas.jpg)
+
+*Figura B14.2. Carpetas y conteos consultados el 7 de octubre de 2026.*
+
+Para facturas de Odoo, usar el archivado inicial y automático descrito en 1.5; evitar cargar otra vez un PDF ya archivado. Los contratos del proyecto son borradores académicos sin firma.
+
+## B15 - Catálogo del sitio web
+
+1. Cargar productos mediante el procedimiento B06. El sitio utiliza las mismas fichas del ERP.
+2. Revisar nombre, precio, imagen, categoría y disponibilidad; publicar los artículos destinados a la tienda mediante las opciones del sitio web de su ficha.
+3. Abrir `/shop`, buscar una muestra y comprobar la ficha pública. Si falta un artículo, revisar su publicación y los filtros del catálogo.
+
+![Catálogo público](../capturas/manual_1/02_catalogo_productos.png)
+
+*Figura B15.1. Captura original del catálogo conservada del manual.*
+
+Importar productos y publicarlos son pasos separados. Los eventos y audiencias de GA4 se documentan en el Manual 3.

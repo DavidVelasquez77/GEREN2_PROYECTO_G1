@@ -75,7 +75,7 @@ Con las métricas visibles del informe de eventos se calcula una tasa de convers
 
 **4 usuarios con <code>purchase</code> ÷ 7 usuarios activos = 57,14 %.**
 
-Este cálculo indica la proporción de usuarios activos que registró al menos un <code>purchase</code> en el periodo. No es la tasa de conversión por sesión ni la tasa de evento clave que muestra Adquisición de tráfico (18,92 %), pues esa tasa incluye todos los eventos clave. Al exponerlo, se debe nombrar el numerador, el denominador y el periodo.
+Este cálculo indica la proporción de usuarios activos que registró al menos un <code>purchase</code> en el periodo. No es la tasa de conversión por sesión ni la tasa de evento clave que muestra Adquisición de tráfico (18,92 %), pues esa tasa incluye todos los eventos clave. El numerador, el denominador y el periodo identifican el alcance de este cálculo.
 
 Los conteos de eventos no forman por sí solos un embudo secuencial: una persona puede ver o agregar varios artículos y activar varias veces <code>begin_checkout</code>. Para cuantificar conversiones entre etapas o abandonos se necesitan datos de usuarios/sesiones en una exploración de embudo poblada.
 
@@ -157,9 +157,9 @@ El informe de una audiencia y la exploración de un segmento no son el mismo ele
 
 ---
 
-## 7. Embudo y abandono del carrito: estado actual
+## 7. Embudo y abandono del carrito: corte histórico
 
-La segunda exploración guardada se titula **Exploración 2 - Eventos y abandono de carrito**. Su paso configurado es **Agrega producto al carrito → Compra completada**, en modo de embudo estándar, para el periodo **27 de septiembre–2 de octubre de 2026**.
+Las capturas históricas A17-A18 corresponden a **Exploración 2 - Eventos y abandono de carrito**, antes de su revisión como exploración de segmentos de eventos. Su paso configurado era **Agrega producto al carrito → Compra completada**, en modo de embudo estándar, para el periodo **27 de septiembre–2 de octubre de 2026**.
 
 La tabla de resultados verificada el **2 de octubre** muestra **5 usuarios** en el primer paso, **4 (80 %)** en compra completada y **1 abandono (20 %)**. Es una medición secuencial del embudo, no una resta de cantidades generales de eventos. Estas cifras pertenecen solo al periodo de la exploración y pueden actualizarse cuando GA4 procese sesiones nuevas.
 
@@ -176,16 +176,15 @@ La tabla de resultados verificada el **2 de octubre** muestra **5 usuarios** en 
 
 ---
 
-## 9. Guía de presentación
+## 9. Consulta de informes y exploraciones
 
-1. En GA4, seleccionar la propiedad **QuetzalMart Web 2026**.
-2. En **Informes → Adquisición → Adquisición de tráfico**, elegir **4 sept–1 oct 2026** y mostrar sesiones, ingresos y la dimensión de grupo de canales.
-3. En **Informes → Ver la interacción y la retención de usuarios → Eventos**, mostrar <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code> y <code>purchase</code>.
-4. En **Informes → Generar ventas → Compras en comercio electrónico**, mostrar el ranking de artículos y las métricas de vistos, añadidos y comprados.
-5. En **Explorar**, abrir la primera exploración y señalar la comparación 7 / 5 / 4; después abrir la segunda y mostrar los 5 usuarios que agregaron al carrito, 4 que compraron y 1 abandono (20 %).
-6. Para la campaña, seleccionar el corte **30 sept 2026**, buscar <code>beneficios_temporada_2026</code> y aclarar la advertencia de <code>(not set)</code> y la diferencia en la suma de sesiones.
-7. Si se presenta la tasa de 57,14 %, explicar su fórmula: 4 usuarios con <code>purchase</code> ÷ 7 usuarios activos en el periodo principal.
-8. Contrastar GA4 con Odoo para comprobar pedidos y facturas; GA4 mide actividad web y atribución, no sustituye el registro comercial del ERP.
+1. Seleccionar **QuetzalMart Web 2026** y fijar el periodo de consulta.
+2. Abrir **Adquisición de tráfico**, **Eventos** y **Compras en comercio electrónico** para consultar sesiones, eventos, unidades e ingresos.
+3. En **Recorrido de compra**, consultar usuarios que avanzan o abandonan las etapas.
+4. Abrir **Exploración 1** para consultar tres segmentos de usuarios.
+5. Abrir **Exploración 2 - Segmentos de eventos** y revisar sus dos pestañas: `view_item`, `add_to_cart`, `begin_checkout` y `purchase` en la primera; `session_start` en la segunda. La revisión de 28 sept-6 oct 2026 contiene 34, 27, 49, 19 y 47 eventos respectivamente. Son conteos de eventos, no usuarios únicos ni un embudo secuencial.
+6. En **Administrar > Visualización de datos > Audiencias**, consultar **GA4 - Abandono de carrito** según A19.
+7. Igualar fechas antes de comparar métricas y contrastar pedidos y facturas con Odoo por separado.
 
 ### Definiciones
 
@@ -344,7 +343,7 @@ Se ven GA4 sugerida - Vistas de producto, GA4 sugerida - Checkout sin compra y G
 
 ### A17 - Embudo: periodo, pasos y resultado
 
-**Sección:** 06 / Abandono y presentación. **Periodo:** 27 sept–2 oct 2026.
+**Sección:** 06 / Abandono de carrito. **Periodo:** 27 sept–2 oct 2026.
 
 ![Embudo: periodo, pasos y resultado](capturas/2026-10-06/06_embudo_abandono/A17_embudo_contexto.jpg)
 
@@ -352,8 +351,30 @@ Copia personal de Exploración 2 - Eventos y abandono de carrito. Se conserva el
 
 ### A18 - Embudo: compras y abandono
 
-**Sección:** 06 / Abandono y presentación. **Periodo:** 27 sept–2 oct 2026.
+**Sección:** 06 / Abandono de carrito. **Periodo:** 27 sept–2 oct 2026.
 
 ![Embudo: compras y abandono](capturas/2026-10-06/06_embudo_abandono/A18_embudo_resultado.jpg)
 
 Coincide con el manual: 5 usuarios agregaron al carrito; 4 completaron compra (80 %); 1 abandonó (20 %). Es un embudo secuencial, no la resta de totales de eventos.
+
+
+### A19 - Configuración de la audiencia de abandono de carrito
+
+**Propiedad:** QuetzalMart Web 2026. **Configuración consultada:** 7 de octubre de 2026.
+
+![Configuración de abandono de carrito](capturas/2026-10-07/audiencia_abandono_configuracion.jpg)
+
+*Figura A19. Condiciones reales de inclusión, exclusión temporal y duración de pertenencia.*
+
+| Elemento | Configuración |
+|---|---|
+| Nombre | GA4 - Abandono de carrito |
+| Incluir usuarios si | Evento `add_to_cart` |
+| Excluir de forma temporal | Evento `purchase` O BIEN `in_app_purchase` |
+| Duración de la pertenencia | 30 días |
+
+1. Abrir **Administrar > Visualización de datos > Audiencias** en la propiedad indicada.
+2. Localizar **GA4 - Abandono de carrito**, abrir el menú de su fila y elegir **Editar**.
+3. Comprobar las condiciones y los 30 días de pertenencia. Cerrar con **Cancelar** si solo se consultó la configuración.
+
+El resumen de usuarios estima pertenencia con datos recientes; no equivale al 20 % de abandono histórico de A18. La audiencia identifica usuarios según las condiciones, mientras el embudo mide su avance entre etapas.
