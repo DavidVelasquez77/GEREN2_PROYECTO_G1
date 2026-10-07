@@ -201,3 +201,159 @@ La tabla de resultados verificada el **2 de octubre** muestra **5 usuarios** en 
 ## Anexo — gráficos
 
 Los gráficos vectoriales están en manual_3/graficos/. Los gráficos 1–4 reflejan los últimos 28 días disponibles (4 de septiembre–1 de octubre de 2026); el gráfico 5 corresponde únicamente al 30 de septiembre de 2026. Mantener esta carpeta junto al Markdown al convertirlo a PDF.
+
+---
+
+## Anexo A - Capturas de Google Analytics 4
+
+**Propiedad:** QuetzalMart Web 2026. **Capturado:** 6 de octubre de 2026.
+
+Este anexo conserva el contenido anterior y añade capturas reales de los informes correspondientes. Los periodos son 4 sept-1 oct 2026 para los informes principales, 30 sept 2026 para campaña y 27 sept-2 oct 2026 para exploraciones. Las tablas nativas respaldan las cifras usadas para elaborar los gráficos del manual.
+
+**Diferencia en el corte de campaña:** la consulta actual del 30 de septiembre muestra 27 sesiones y Q350,11; beneficios_temporada_2026 figura con Q222,10. El manual conserva 21 sesiones, Q144,98 y Q106,42 de su consulta original. No se atribuye esta diferencia a una causa no comprobada.
+
+**Exploraciones:** se consultaron copias personales con el periodo histórico. Las definiciones de los segmentos y pasos de las exploraciones compartidas permanecen intactas. La primera copia usa la vista Tabla. Las audiencias se muestran por separado, con su propia ventana de pertenencia.
+
+### A01 - Adquisición: sesiones por canal
+
+**Sección:** 01 / Adquisición. **Periodo:** 4 sept–1 oct 2026.
+
+![Adquisición: sesiones por canal](capturas/2026-10-06/01_adquisicion/A01_sesiones.jpg)
+
+Gráfica temporal original de GA4; respalda las 37 sesiones y el desglose por canal.
+
+### A02 - Adquisición: desglose de sesiones
+
+**Sección:** 01 / Adquisición. **Periodo:** 4 sept–1 oct 2026.
+
+![Adquisición: desglose de sesiones](capturas/2026-10-06/01_adquisicion/A02_tabla_sesiones.jpg)
+
+Tabla de canales: Email 15, Direct 14 y Unassigned 8; total 37 sesiones.
+
+### A03 - Adquisición: eventos e ingresos por canal
+
+**Sección:** 01 / Adquisición. **Periodo:** 4 sept–1 oct 2026.
+
+![Adquisición: eventos e ingresos por canal](capturas/2026-10-06/01_adquisicion/A03_tabla_ingresos.jpg)
+
+Respaldo del gráfico de ingresos del manual: Email Q274,22; Direct Q54,80; Unassigned Q75,89; total Q404,91.
+
+### A04 - Eventos: las cuatro series del comercio electrónico
+
+**Sección:** 02 / Comercio electrónico. **Periodo:** 4 sept–1 oct 2026.
+
+![Eventos: las cuatro series del comercio electrónico](capturas/2026-10-06/02_comercio_electronico/A04_eventos_grafica.jpg)
+
+Gráfica nativa de view_item, add_to_cart, begin_checkout y purchase; se seleccionaron esas cuatro filas para visualizar sus series.
+
+### A05 - Eventos: cantidades y usuarios
+
+**Sección:** 02 / Comercio electrónico. **Periodo:** 4 sept–1 oct 2026.
+
+![Eventos: cantidades y usuarios](capturas/2026-10-06/02_comercio_electronico/A05_eventos_tabla.jpg)
+
+Coincide con el manual: view_item 25/7 usuarios; add_to_cart 18/5; begin_checkout 28/5; purchase 10/4. El total de usuarios es 7; respalda la proporción calculada 4/7 = 57,14 %. 
+
+### A06 - Productos: actividad por artículo
+
+**Sección:** 03 / Productos. **Periodo:** 4 sept–1 oct 2026.
+
+![Productos: actividad por artículo](capturas/2026-10-06/03_productos/A06_productos_grafica.jpg)
+
+Gráfica temporal nativa de artículos vistos. La tabla siguiente respalda el gráfico de artículos comprados e ingresos del manual.
+
+### A07 - Productos: unidades e ingresos por artículo
+
+**Sección:** 03 / Productos. **Periodo:** 4 sept–1 oct 2026.
+
+![Productos: unidades e ingresos por artículo](capturas/2026-10-06/03_productos/A07_productos_tabla.jpg)
+
+Coincide con el manual: arroz 11/Q149,16; azúcar 3/Q61,11; frijol 1/Q16,96; total 15 artículos/Q227,23. El orden de la tabla nativa se basa en artículos vistos.
+
+### A08 - Campaña: corte diario original
+
+**Sección:** 04 / Campaña identificada. **Periodo:** 30 sept 2026.
+
+![Campaña: corte diario original](capturas/2026-10-06/04_campana/A08_campana_grafica.jpg)
+
+Gráfica nativa de sesiones por campaña. En esta consulta GA4 muestra cifras diferentes del corte transcrito en el manual; se conserva el periodo solicitado.
+
+### A09 - Campaña: ingresos y eventos clave
+
+**Sección:** 04 / Campaña identificada. **Periodo:** 30 sept 2026.
+
+![Campaña: ingresos y eventos clave](capturas/2026-10-06/04_campana/A09_campana_ingresos.jpg)
+
+Consulta del 6 de octubre: beneficios_temporada_2026 Q222,10; total Q350,11. El manual conserva Q106,42 y Q144,98 respectivamente. Las capturas documentan el resultado actual para el mismo periodo.
+
+### A10 - Campaña: sesiones y advertencia de atribución
+
+**Sección:** 04 / Campaña identificada. **Periodo:** 30 sept 2026.
+
+![Campaña: sesiones y advertencia de atribución](capturas/2026-10-06/04_campana/A10_campana_sesiones.jpg)
+
+Consulta actual: 27 sesiones totales, 8 para beneficios_temporada_2026; se conserva visible la advertencia de (not set). El manual registra 21 y 2 en su consulta anterior.
+
+### A11 - Segmentos: periodo y configuración de consulta
+
+**Sección:** 05 / Segmentos y exploraciones. **Periodo:** 27 sept–2 oct 2026.
+
+![Segmentos: periodo y configuración de consulta](capturas/2026-10-06/05_segmentos_audiencias/A11_segmentos_configuracion.jpg)
+
+Copia personal de Exploracion 1 - Segmentos de usuarios. Se conserva la comparación de los tres segmentos y se muestra como tabla, la vista usada por el manual.
+
+### A12 - Segmentos: comparación de usuarios activos
+
+**Sección:** 05 / Segmentos y exploraciones. **Periodo:** 27 sept–2 oct 2026.
+
+![Segmentos: comparación de usuarios activos](capturas/2026-10-06/05_segmentos_audiencias/A12_segmentos_usuarios.jpg)
+
+Resultado de la copia en la vista Tabla: 7 usuarios con visualización, 5 con carrito y 4 compradores. Son poblaciones de segmentos que se solapan; no se suman como usuarios únicos.
+
+### A13 - Segmentos: cinco eventos guardados
+
+**Sección:** 05 / Segmentos y exploraciones. **Periodo:** 27 sept-2 oct 2026.
+
+![Segmentos: cinco eventos guardados](capturas/2026-10-06/05_segmentos_audiencias/A13_segmentos_eventos.jpg)
+
+Lista nativa de los cinco segmentos citados por el manual: Evento view_item, Evento add_to_cart, Evento begin_checkout, Evento purchase y Evento session_start. Se desplazó el panel de variables de la copia de la segunda exploración; la captura de contexto del embudo acredita su periodo histórico.
+
+### A14 - Audiencias: evolución de usuarios
+
+**Sección:** 05 / Segmentos y exploraciones. **Periodo:** 4 sept-1 oct 2026.
+
+![Audiencias: evolución de usuarios](capturas/2026-10-06/05_segmentos_audiencias/A14_audiencias_grafica.jpg)
+
+Informe histórico de las audiencias con datos en este período. La pertenencia a audiencias tiene su propia ventana; los grupos se superponen y sus ingresos no deben sumarse como ventas únicas.
+
+### A15 - Audiencias: usuarios y sesiones
+
+**Sección:** 05 / Segmentos y exploraciones. **Periodo:** 4 sept-1 oct 2026.
+
+![Audiencias: usuarios y sesiones](capturas/2026-10-06/05_segmentos_audiencias/A15_audiencias_tabla.jpg)
+
+Las audiencias de visitas, carrito y compradores muestran 7, 5 y 4 usuarios. Las audiencias sugeridas y personalizada del manual se documentan por separado como configuración; la tabla no demuestra su población retroactiva.
+
+### A16 - Audiencias: sugeridas y personalizada
+
+**Sección:** 05 / Segmentos y exploraciones. **Periodo:** 27 sept-2 oct 2026; configuración consultada el 6 oct 2026.
+
+![Audiencias: sugeridas y personalizada](capturas/2026-10-06/05_segmentos_audiencias/A16_audiencias_configuracion.jpg)
+
+Se ven GA4 sugerida - Vistas de producto, GA4 sugerida - Checkout sin compra y GA4 personalizada - Visitantes sin compra, creadas el 2 de octubre. Esta captura acredita la configuración existente y su ventana de pertenencia; no equivale a recalcular segmentos antes de su creación. La comparación automática visible corresponde al 20-25 de septiembre.
+
+### A17 - Embudo: periodo, pasos y resultado
+
+**Sección:** 06 / Abandono y presentación. **Periodo:** 27 sept–2 oct 2026.
+
+![Embudo: periodo, pasos y resultado](capturas/2026-10-06/06_embudo_abandono/A17_embudo_contexto.jpg)
+
+Copia personal de Exploración 2 - Eventos y abandono de carrito. Se conserva el embudo estándar cerrado Agrega producto al carrito → Compra completada y el periodo histórico del manual.
+
+### A18 - Embudo: compras y abandono
+
+**Sección:** 06 / Abandono y presentación. **Periodo:** 27 sept–2 oct 2026.
+
+![Embudo: compras y abandono](capturas/2026-10-06/06_embudo_abandono/A18_embudo_resultado.jpg)
+
+Coincide con el manual: 5 usuarios agregaron al carrito; 4 completaron compra (80 %); 1 abandonó (20 %). Es un embudo secuencial, no la resta de totales de eventos.
