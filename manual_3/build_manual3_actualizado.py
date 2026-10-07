@@ -13,7 +13,7 @@ from reportlab.platypus import Paragraph, Table, TableStyle
 
 HERE = Path(__file__).resolve().parent
 SOURCE = HERE / "QuetzalMart · Manual 3 · Inteligencia de negocios con GA4.pdf"
-OUTPUT = HERE / "QuetzalMart · Manual 3 · Inteligencia de negocios con GA4 · Actualizado.pdf"
+OUTPUT = HERE / "QuetzalMart · Manual 3 · Inteligencia de negocios con GA4.pdf"
 
 NAVY = colors.HexColor("#11196F")
 ORANGE = colors.HexColor("#F14924")
@@ -234,7 +234,7 @@ def main():
         else:
             writer.add_page(page)
     writer.add_metadata({
-        "/Title": "QuetzalMart · Manual 3 · Inteligencia de negocios con GA4 · Actualizado",
+        "/Title": "QuetzalMart · Manual 3 · Inteligencia de negocios con GA4",
         "/Author": "QuetzalMart · GERENCIALES 2",
         "/Subject": "Manual con exploraciones de segmentos de usuarios y eventos actualizadas al 7 oct 2026",
     })
