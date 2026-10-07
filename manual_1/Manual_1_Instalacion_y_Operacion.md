@@ -17,6 +17,7 @@
 4. [RPA de UiPath: flujo, evidencia y ventajas](#4-rpa-de-uipath-flujo-evidencia-y-ventajas)
 5. [Comprobación de resultados](#5-comprobación-de-resultados)
 6. [Anexo B: carga por módulo](#anexo-b---carga-de-información-por-módulo)
+7. [Anexo C: enlaces de acceso al proyecto](#anexo-c---enlaces-de-acceso-al-proyecto)
 
 ---
 
@@ -121,7 +122,7 @@ Los 5 PDF de facturas de proveedores, 5 acuerdos simulados de outsourcing y 5 ac
 
 ## 1.6 Verificar el despliegue
 
-1. Abrir la dirección HTTPS indicada en la tabla y confirmar que Odoo muestra la pantalla de inicio de sesión.
+1. Abrir el acceso ERP/CRM indicado en la sección 2 y comprobar la pantalla de inicio de sesión.
 2. Iniciar sesión con la cuenta administrativa entregada al equipo por el medio seguro correspondiente. El manual no almacena la contraseña.
 3. Abrir el menú de aplicaciones y comprobar que los módulos instalados estén disponibles.
 4. Confirmar la presencia de las compañías, sucursales/almacenes, productos y contactos del proyecto.
@@ -133,6 +134,8 @@ Los 5 PDF de facturas de proveedores, 5 acuerdos simulados de outsourcing y 5 ac
 ---
 
 # 2. Funcionamiento de los módulos
+
+**Acceso al ERP/CRM:** [https://quetzalmart.34-9-149-41.sslip.io/odoo](https://quetzalmart.34-9-149-41.sslip.io/odoo).
 
 | Módulo | Para qué se usa en QuetzalMart | Datos y relación con otros módulos |
 |---|---|---|
@@ -876,3 +879,45 @@ Para facturas de Odoo, usar el archivado inicial y automático descrito en 1.5; 
 *Figura B15.1. Captura original del catálogo conservada del manual.*
 
 Importar productos y publicarlos son pasos separados. Los eventos y audiencias de GA4 se documentan en el Manual 3.
+
+---
+
+# Anexo C - Enlaces de acceso al proyecto
+
+El ERP/CRM y el sitio web utilizan la misma instalación de Odoo.
+
+## C01 / Sitio web
+
+[https://quetzalmart.34-9-149-41.sslip.io](https://quetzalmart.34-9-149-41.sslip.io)
+
+Inicio del portal público de QuetzalMart.
+
+## C02 / Tienda en línea
+
+[https://quetzalmart.34-9-149-41.sslip.io/shop](https://quetzalmart.34-9-149-41.sslip.io/shop)
+
+Catálogo, fichas de productos y acceso al carrito de compras.
+
+## C03 / ERP y CRM - Odoo
+
+[https://quetzalmart.34-9-149-41.sslip.io/odoo](https://quetzalmart.34-9-149-41.sslip.io/odoo)
+
+Inicio de sesión y menú de aplicaciones: Ventas, Compras, Inventario, Facturación, Contactos, CRM, Empleados, Marketing y Documentos. Requiere una cuenta autorizada en Odoo.
+
+## C04 / Google Analytics 4
+
+[https://analytics.google.com/analytics/web/#/a408877368p555190935/realtime/overview](https://analytics.google.com/analytics/web/#/a408877368p555190935/realtime/overview)
+
+Propiedad QuetzalMart Web 2026 (555190935), cuenta 408877368. El enlace abre Tiempo real; los informes y exploraciones del Manual 3 se consultan desde el menú de GA4. Requiere permiso de acceso a esta propiedad.
+
+## C05 / Repositorio del proyecto
+
+[https://github.com/DavidVelasquez77/GEREN2_PROYECTO_G1](https://github.com/DavidVelasquez77/GEREN2_PROYECTO_G1)
+
+Fuentes del proyecto, infraestructura, consultas SQL, datos, evidencias y manuales. Para recursos privados, usar una cuenta con acceso al repositorio.
+
+## C06 / Proyecto de UiPath
+
+[https://github.com/DavidVelasquez77/GEREN2_PROYECTO_G1/tree/main/rpa/QuetzalMart_RPA](https://github.com/DavidVelasquez77/GEREN2_PROYECTO_G1/tree/main/rpa/QuetzalMart_RPA)
+
+Carpeta del robot en el repositorio. Para ejecutarlo, descargar el proyecto, abrir project.json en UiPath Studio, restaurar dependencias y ejecutar Main.xaml. La ejecución se realiza en Windows.
