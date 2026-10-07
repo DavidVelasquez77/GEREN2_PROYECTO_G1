@@ -11,7 +11,7 @@
 SELECT current_database() AS base_de_datos,
        current_user AS usuario,
        now() AS fecha_consulta;
-
+--------------------------------------------- 1.01---------------------------
 -- 1. Enunciado: al menos 150 ventas.
 SELECT COUNT(*) AS ventas_confirmadas
 FROM sale_order
@@ -41,7 +41,7 @@ LEFT JOIN product_template pt ON pt.id = pp.product_tmpl_id
 WHERE so.state IN ('sale', 'done')
 ORDER BY so.date_order DESC, so.name
 LIMIT 150;
-
+--------------------------------------------- 1.02---------------------------
 -- 2. Enunciado: al menos 20 cotizaciones de venta.
 SELECT COUNT(*) AS cotizaciones_venta
 FROM sale_order
@@ -74,7 +74,7 @@ JOIN res_partner rp ON rp.id = po.partner_id
 WHERE po.state IN ('draft', 'sent')
 ORDER BY po.date_order DESC
 LIMIT 20;
-
+--------------------------------------------- 1.03 & 1.04 & 1.05 ---------------------------
 -- 3. Enunciado: al menos 35 empleados, 6 cargos y 5 departamentos.
 SELECT 'empleados activos' AS elemento, COUNT(*) AS cantidad
 FROM hr_employee
@@ -100,7 +100,7 @@ LEFT JOIN hr_job hj ON hj.id = he.job_id
 LEFT JOIN hr_department hd ON hd.id = he.department_id
 WHERE he.active
 ORDER BY he.name;
-
+--------------------------------------------- 1.06---------------------------
 -- 4. Enunciado: al menos 100 compras realizadas.
 SELECT COUNT(*) AS compras_confirmadas
 FROM purchase_order
@@ -134,7 +134,7 @@ LEFT JOIN account_move am
 WHERE po.state IN ('purchase', 'done')
 ORDER BY po.date_order DESC, po.name
 LIMIT 100;
-
+--------------------------------------------- 1.07---------------------------
 -- 5. Enunciado: al menos 60 materiales/productos.
 SELECT COUNT(*) AS materiales_quetzalmart
 FROM product_product
