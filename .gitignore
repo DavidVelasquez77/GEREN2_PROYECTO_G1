@@ -3,3 +3,11 @@ tmp/
 *.log
 __pycache__/
 *.pyc
+
+# Local runtimes and secrets (keep examples and project deliverables)
+node_modules/
+.env
+.env.*
+!.env.example
+!.env.*.example
+**/.local/
